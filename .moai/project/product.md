@@ -1,9 +1,9 @@
 ---
 id: PRODUCT-001
-version: 0.1.3
+version: 0.1.4
 status: active
 created: 2025-10-01
-updated: 2025-10-17
+updated: 2025-10-30
 author: @project-owner
 priority: high
 ---
@@ -11,6 +11,13 @@ priority: high
 # todo Product Definition
 
 ## HISTORY
+
+### v0.1.4 (2025-10-30)
+- **UPDATED**: Merge backup files (automatic optimization)
+- **AUTHOR**: @Alfred
+- **BACKUP**: .moai-backups/backup/
+- **REASON**: Restoring template after moai-adk init reinitialization
+- **LANGUAGE**: Korean conversation language configured (user: cyans)
 
 ### v0.1.3 (2025-10-17)
 - **UPDATED**: Template version synced (v0.3.8)

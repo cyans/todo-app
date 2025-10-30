@@ -1,4 +1,11 @@
 {
+  "language": {
+    "conversation_language": "ko",
+    "conversation_language_name": "한국어"
+  },
+  "user": {
+    "nickname": "cyans"
+  },
   "project": {
     "name": "todo",
     "mode": "personal",
@@ -11,6 +18,8 @@
       "markers": [],
       "confirmed_by": null
     },
-    "optimized": false
+    "optimized": true,
+    "last_merge": "2025-10-30T11:30:00+00:00",
+    "backup_source": ".moai-backups/backup/"
   }
 }

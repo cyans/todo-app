@@ -8,9 +8,11 @@ import json
 import signal
 import socket
 import subprocess
-from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
+
+# Import Windows-compatible timeout_handler
+from .timeout import TimeoutError, timeout_handler
 
 # Cache directory for version check results
 CACHE_DIR_NAME = ".moai/cache"
@@ -68,35 +70,7 @@ def find_project_root(start_path: str | Path = ".") -> Path:
     return Path(start_path).resolve()
 
 
-class TimeoutError(Exception):
-    """Signal-based timeout exception"""
-    pass
-
-
-@contextmanager
-def timeout_handler(seconds: int):
-    """Hard timeout using SIGALRM (works on Unix systems including macOS)
-
-    This uses kernel-level signal to interrupt ANY blocking operation,
-    even if subprocess.run() timeout fails on macOS.
-
-    Args:
-        seconds: Timeout duration in seconds
-
-    Raises:
-        TimeoutError: If operation exceeds timeout
-    """
-    def _handle_timeout(signum, frame):
-        raise TimeoutError(f"Operation timed out after {seconds} seconds")
-
-    # Set the signal handler
-    old_handler = signal.signal(signal.SIGALRM, _handle_timeout)
-    signal.alarm(seconds)
-    try:
-        yield
-    finally:
-        signal.alarm(0)  # Disable alarm
-        signal.signal(signal.SIGALRM, old_handler)
+# TimeoutError and timeout_handler are now imported from .timeout module
 
 
 def detect_language(cwd: str) -> str:

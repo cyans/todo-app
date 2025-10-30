@@ -1,9 +1,9 @@
 ---
 id: TECH-001
-version: 0.1.1
+version: 0.1.2
 status: active
 created: 2025-10-01
-updated: 2025-10-17
+updated: 2025-10-30
 author: @tech-lead
 priority: medium
 ---
@@ -11,6 +11,13 @@ priority: medium
 # todo Technology Stack
 
 ## HISTORY
+
+### v0.1.2 (2025-10-30)
+- **UPDATED**: Merge backup files (automatic optimization)
+- **AUTHOR**: @Alfred
+- **BACKUP**: .moai-backups/backup/
+- **REASON**: Restoring template after moai-adk init reinitialization
+- **LANGUAGE**: Korean conversation language configured (user: cyans)
 
 ### v0.1.1 (2025-10-17)
 - **UPDATED**: Template version synced (v0.3.8)

@@ -3,7 +3,7 @@
 **SPEC-First TDD Development with Alfred SuperAgent**
 
 > **Document Language**: en
-> **Project Owner**: @user
+> **Project Owner**: @cyans
 > **Config**: `.moai/config.json`
 >
 > **Note**: `AskUserQuestion tool (documented in moai-alfred-interactive-questions skill)` provides TUI-based responses when user interaction is needed. The skill loads on-demand.

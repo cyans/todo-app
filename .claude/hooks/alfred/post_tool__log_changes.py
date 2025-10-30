@@ -11,7 +11,6 @@ Output: Continue execution (currently a stub for future enhancements)
 """
 
 import json
-import signal
 import sys
 from pathlib import Path
 from typing import Any
@@ -22,6 +21,7 @@ SHARED_DIR = HOOKS_DIR / "shared"
 if str(SHARED_DIR) not in sys.path:
     sys.path.insert(0, str(SHARED_DIR))
 
+from core.timeout import setup_signal_timeout
 from handlers import handle_post_tool_use
 
 
@@ -30,8 +30,8 @@ class HookTimeoutError(Exception):
     pass
 
 
-def _timeout_handler(signum, frame):
-    """Signal handler for 5-second timeout"""
+def _timeout_handler():
+    """Timeout handler for cross-platform timeout"""
     raise HookTimeoutError("Hook execution exceeded 5-second timeout")
 
 
@@ -47,9 +47,8 @@ def main() -> None:
         0: Success
         1: Error (timeout, JSON parse failure, handler exception)
     """
-    # Set 5-second timeout
-    signal.signal(signal.SIGALRM, _timeout_handler)
-    signal.alarm(5)
+    # Set 5-second timeout (Windows-compatible)
+    cancel_timeout = setup_signal_timeout(5, _timeout_handler)
 
     try:
         # Read JSON payload from stdin
@@ -94,8 +93,9 @@ def main() -> None:
         sys.exit(1)
 
     finally:
-        # Always cancel alarm
-        signal.alarm(0)
+        # Always cancel timeout
+        if cancel_timeout:
+            cancel_timeout()
 
 
 if __name__ == "__main__":
