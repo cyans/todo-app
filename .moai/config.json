@@ -1,0 +1,16 @@
+{
+  "project": {
+    "name": "todo",
+    "mode": "personal",
+    "locale": "en",
+    "language": "generic",
+    "language_detection": {
+      "detected_language": "generic",
+      "detection_method": "cli_default",
+      "confidence": null,
+      "markers": [],
+      "confirmed_by": null
+    },
+    "optimized": false
+  }
+}
