@@ -1,14 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* Custom styles */
-@layer base {
-  body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
-  }
+body {
+  background-color: rgb(249 250 251);
+  color: rgb(17 24 39);
 }
 
-@layer components {
-  /* Custom component styles will go here */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(17 24 39);
+    color: rgb(243 244 246);
+  }
 }

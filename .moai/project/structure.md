@@ -1,3 +1,4 @@
+# @DOC:STRUCTURE
 ---
 id: STRUCTURE-001
 version: 0.1.2
@@ -12,11 +13,11 @@ priority: medium
 
 ## HISTORY
 
-### v0.1.2 (2025-10-30)
-- **UPDATED**: Merge backup files (automatic optimization)
-- **AUTHOR**: @Alfred
-- **BACKUP**: .moai-backups/backup/
-- **REASON**: Restoring template after moai-adk init reinitialization
+### v0.1.3 (2025-11-06)
+- **UPDATED**: Frontend component structure updated with actual implementation
+- **AUTHOR**: @doc-syncer
+- **TAG**: @DOC:STRUCTURE-001
+- **REASON**: Synchronized architecture documentation with implemented components
 - **LANGUAGE**: Korean conversation language configured (user: cyans)
 
 ### v0.1.1 (2025-10-17)
@@ -49,24 +50,63 @@ Project Architecture
 
 ## @DOC:MODULES-001 Module Responsibilities
 
-### 1. [Primary Module 1]
+### 1. Frontend Module (React + Vite)
 
-- **Responsibilities**: [Key duties of the module]
-- **Inputs**: [Data it consumes]
-- **Processing**: [Core processing steps]
-- **Outputs**: [Produced artifacts]
+- **Responsibilities**: User interface, user interactions, state management
+- **Inputs**: API responses, user interactions, local state
+- **Processing**: UI rendering, event handling, state synchronization
+- **Outputs**: React components, user interface, API calls
 
 | Component     | Role   | Key Capabilities |
 | ------------- | ------ | ---------------- |
-| [Component 1] | [Role] | [Feature list]   |
-| [Component 2] | [Role] | [Feature list]   |
+| **App.jsx** | @CODE:TODO-CRUD-001:UI:MAIN | Main application routing and layout |
+| **TodoForm.jsx** | @CODE:TODO-CRUD-001:UI:FORM | Task creation and editing interface |
+| **TodoList.jsx** | @CODE:TODO-CRUD-001:UI | Task display and management |
+| **useTodos.js** | @CODE:TODO-CRUD-001:HOOKS:USE-TODOS | Custom hook for state management |
+| **api.js** | @CODE:TODO-CRUD-001:CLIENT:API | HTTP client for API communication |
 
-### 2. [Primary Module 2]
+### 2. Backend Module (Node.js + Express)
 
-- **Responsibilities**: [Key duties of the module]
-- **Inputs**: [Data it consumes]
-- **Processing**: [Core processing steps]
-- **Outputs**: [Produced artifacts]
+- **Responsibilities**: API endpoints, business logic, data persistence
+- **Inputs**: HTTP requests, database operations, validation
+- **Processing**: Authentication, validation, business logic, CRUD operations
+- **Outputs**: JSON responses, database operations, error handling
+
+| Component     | Role   | Key Capabilities |
+| ------------- | ------ | ---------------- |
+| **app.js** | @CODE:TODO-CRUD-001:API | Express application setup |
+| **database.js** | @CODE:TODO-CRUD-001:CONFIG:DB | MongoDB connection and configuration |
+| **todo.model.js** | @CODE:TODO-CRUD-001:DATA | Task data model and schema |
+| **todo-service.js** | @CODE:TODO-CRUD-001:SERVICE | Business logic layer |
+| **todos.js** | @CODE:TODO-CRUD-001:API | Todo API endpoints |
+| **validation.js** | @CODE:TODO-CRUD-001:API | Request validation middleware |
+
+### 3. Data Module (MongoDB + Mongoose)
+
+- **Responsibilities**: Data persistence, schema validation, database operations
+- **Inputs**: Task data, user data, validation rules
+- **Processing**: Data validation, CRUD operations, indexing
+- **Outputs**: Structured data, database documents, query results
+
+| Component     | Role   | Key Capabilities |
+| ------------- | ------ | ---------------- |
+| **User Model** | User data management | User account persistence |
+| **Task Model** | @CODE:TODO-CRUD-001:DATA | Task data with schema validation |
+| **Database Config** | @CODE:TODO-CRUD-001:CONFIG:DB | MongoDB connection setup |
+
+### 4. Testing Module (Jest + Supertest)
+
+- **Responsibilities**: Unit testing, integration testing, test utilities
+- **Inputs**: Test files, test data, API endpoints
+- **Processing**: Test execution, assertions, mocking
+- **Outputs**: Test reports, coverage analysis, test artifacts
+
+| Component     | Role   | Key Capabilities |
+| ------------- | ------ | ---------------- |
+| **todo-api.test.js** | @TEST:TODO-CRUD-001:API | API endpoint integration tests |
+| **todo-service.test.js** | @TEST:TODO-CRUD-001:SERVICE | Service layer unit tests |
+| **todo.model.test.js** | @TEST:TODO-CRUD-001:DATA | Model validation tests |
+| **database.test.js** | @TEST:TODO-CRUD-001:DATA | Database connection tests |
 
 ## @DOC:INTEGRATION-001 External Integrations
 
