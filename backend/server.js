@@ -2,9 +2,15 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
+import connectDB from './src/config/database.js';
 
 // Load environment variables
 dotenv.config();
+
+// Connect to database (only if not in test environment)
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +30,9 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Import routes
+import todoRoutes from './src/routes/todo-routes.js';
+
 // Root endpoint
 app.get('/', (req, res) => {
   res.json({
@@ -31,6 +40,9 @@ app.get('/', (req, res) => {
     version: '1.0.0'
   });
 });
+
+// API routes
+app.use('/api/v1/todos', todoRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
