@@ -1,9 +1,9 @@
 ---
 id: PLAN-TODO-STATUS-001
-version: 0.1.0
-status: draft
+version: 1.0.0
+status: completed
 created: 2025-11-06
-updated: 2025-11-06
+updated: 2025-11-07
 author: @spec-builder
 priority: critical
 title: 할 일 상태 관리 시스템 구현 계획

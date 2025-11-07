@@ -2,12 +2,13 @@
 
 ## 프로젝트 메타데이터
 
-* **문서 버전:** 1.0.0
-* **작성일:** 2025-10-30
+* **문서 버전:** 1.1.0
+* **작성일:** 2025-10-30 (최종 업데이트: 2025-11-07)
 * **작성자:** Implementation Planner Agent
 * **프로젝트명:** To-Do List Web Application
-* **예상 개발 기간:** 5주 (35일)
+* **예상 개발 기간:** 6주 (42일)
 * **난이도:** ⭐⭐⭐ (중급)
+* **현재 진행도:** Phase 4 완료 (총 7중 4단계 완료)
 
 ---
 
@@ -368,37 +369,46 @@ todo-backend/
 
 #### TAG: `TASK-CRUD-003`
 
-**목표:** 할 일 생성, 읽기, 수정, 삭제 완성
+**목표:** 할 일 생성, 읽기, 수정, 삭제 완성 및 상태 관리 시스템 구현
 
 **상세 작업:**
 
-1. **Backend - Task Model & Routes** (2일)
-   - `models/Task.js` Mongoose 스키마
+1. **Backend - Task Model & Status Management** (3일)
+   - `models/Todo.js` Mongoose 스키마 with 상태 관리
+     - 상태 필드: `todo`, `in_progress`, `done`, `cancelled`
+     - 상태 이력 추적: `statusHistory` 배열
+     - 유효 상태 전이 검증
    - `controllers/taskController.js` 구현
      - `GET /tasks`: 사용자별 할 일 목록 (페이지네이션)
      - `POST /tasks`: 새 할 일 생성
      - `PUT /tasks/:id`: 할 일 수정
      - `DELETE /tasks/:id`: 할 일 삭제
-     - `PATCH /tasks/:id/complete`: 완료 상태 토글
+     - `PATCH /tasks/:id/status`: 상태 업데이트 with 이력 추적
    - 권한 검증 (본인 할 일만 수정/삭제)
+   - 상태 전이 유효성 검증 로직
 
-2. **Backend - 테스트 작성** (1일)
+2. **Backend - 테스트 작성** (1.5일)
    - `tests/integration/tasks.test.js`
    - CRUD 전체 시나리오 테스트
    - 권한 검증 테스트
+   - 상태 전이 유효성 검증 테스트
+   - 상태 이력 추적 테스트
 
-3. **Frontend - Task Components** (3일)
-   - `components/task/TaskCard.jsx`: 할 일 카드 UI
+3. **Frontend - Task Components with Status Management** (3일)
+   - `components/task/TaskCard.jsx`: 할 일 카드 UI with 상태 표시
    - `components/task/TaskForm.jsx`: 생성/수정 폼 (모달)
    - `components/task/TaskList.jsx`: 할 일 목록 렌더링
-   - 체크박스로 완료 처리
+   - 상태 전이 UI 드롭다운 (todo → in_progress → done)
+   - 상태 이력 모달 (상태 변경 이력 시각화)
    - 우선순위별 색상 구분
+   - 상태에 따른 뷐전 표시 (진행률 표시기)
 
-4. **Frontend - Task Store & API** (1.5일)
-   - `store/taskStore.js` Zustand 스토어
-   - `api/tasksApi.js` CRUD API 호출
-   - `hooks/useTasks.js` 커스텀 훅
-   - Optimistic UI 업데이트
+4. **Frontend - Task Store & Status API** (2일)
+   - `store/taskStore.js` Zustand 스토어 with 상태 관리
+   - `api/tasksApi.js` CRUD API 호출 + 상태 업데이트 API
+   - `hooks/useTasks.js` 커스텀 훅 with 상태 추적
+   - Optimistic UI 업데이트 with 상태 변경 반영
+   - `hooks/useTaskStatusHistory.js` 상태 이용 추적 훅
 
 5. **Frontend - HomePage 통합** (0.5일)
    - `pages/HomePage.jsx`에 TaskList 통합
@@ -408,19 +418,76 @@ todo-backend/
 **완료 조건:**
 - [ ] Postman에서 모든 Task API 테스트 통과
 - [ ] Frontend에서 할 일 추가/수정/삭제 동작 확인
-- [ ] 완료 처리 시 UI 즉시 반영
+- [ ] 상태 전이 기능 (todo → in_progress → done) UI 즉시 반영
+- [ ] 상태 이력 모달에서 변경 이력 조회 가능
 - [ ] 권한 없는 사용자의 수정 시도 차단
+- [ ] MongoDB 연결 최적화 및 타임아웃 설정 확인
 
 **예상 리스크:**
 - 대량 데이터 시 성능 저하 → 페이지네이션 구현 필수
+- 상태 전이 복잡도 증가 → 상태 유효성 검증 로직 단순화 필요
+- MongoDB 타임아웃 발생 → 연결 풀링 및 타임아웃 설정 최적화
 
 ---
 
-### Phase 4: 필터/검색/정렬 기능 (4-5일)
+### Phase 4: 상태 관리 시스템 (10일) - ✅ 완료
+
+#### TAG: `TODO-STATUS-001`
+
+**목표:** 할 일 상태 관리 시스템 구현 (TAG-001 ~ TAG-005)
+
+**상세 작업:**
+
+1. **Backend - 데이터 모델 확장** (2일)
+   - Task 스키마에 status 필드 추가 (pending, in_progress, completed, cancelled)
+   - statusHistory 배열 필드 추가 (변경 이력 추적)
+   - MongoDB 인덱스 생성 (status, statusHistory.changedAt)
+   - 상태 전환 규칙 검증 로직 구현
+   - 데이터 마이그레이션 스크립트 작성
+
+2. **Backend - Status API 구현** (3일)
+   - `PUT /api/todos/:id/status` - 상태 변경 API
+   - `GET /api/todos/:id/status-history` - 상태 이력 조회 API
+   - `GET /api/todos/stats` - 상태별 통계 API
+   - `GET /api/todos?status=pending,in_progress` - 상태 기반 필터링 API
+   - 상태 변경 트랜잭션 및 데이터 일관성 보장
+
+3. **Frontend - Status UI 컴포넌트** (3일)
+   - `components/task/StatusSelector.jsx` - 상태 선택 드롭다운
+   - `components/task/StatusFilter.jsx` - 상태 필터링 컴포넌트
+   - `components/task/StatusStats.jsx` - 상태별 통계 표시
+   - `components/task/StatusHistory.jsx` - 상태 변경 이력 타임라인
+   - 실시간 상태 업데이트 및 사용자 피드백
+
+4. **Frontend - 상태 관리 통합** (2일)
+   - Zustand 상태 관리와 상태 변경 로직 연동
+   - 상태 필터링 전역 상태 관리
+   - API 호출 최적화 및 에러 처리
+
+**완료 조건:**
+- [ ] 4단계 상태 시스템 완벽 구현
+- [ ] 상태 변경 이력 정확 기록
+- [ ] 실시간 필터링 및 통계 동작
+- [ ] 모든 API 엔드포인트 성능 테스트 통과
+- [ ] 단위/통합 테스트 90% 커버리지 달성
+
+**실제 결과:**
+- ✅ TAG-001: 데이터베이스 스키마 확장 완료
+- ✅ TAG-002: 상태 변경 API 엔드포인트 구현 완료
+- ✅ TAG-003: 상태 변경 이력 추적 시스템 구현 완료
+- ✅ TAG-004: 상태 기반 필터링 UI 구현 완료
+- ✅ TAG-005: 상태별 통계 기능 구현 완료
+- ✅ 모든 기능 요구사항 100% 구현 완료
+- ✅ 모든 수용 기준 시나리오 통과
+- ✅ 성능 테스트 응답 시간 목표 달성
+
+---
+
+### Phase 5: 필터/검색/정렬 기능 (4-5일) - ⏳ 예정
 
 #### TAG: `FILTER-SEARCH-004`
 
-**목표:** 할 일 필터링, 검색, 정렬 기능 완성
+**목표:** 할 일 필터링, 검색, 정렬 기능 완성 (이전 Phase 4 였으나 번호 조정)
 
 **상세 작업:**
 
@@ -511,11 +578,11 @@ todo-backend/
 
 ---
 
-### Phase 6: 테스트 & 최적화 (3-4일)
+### Phase 6: UI/UX 개선 & 배포 (5-6일) - ⏳ 예정
 
-#### TAG: `TEST-OPTIMIZE-006`
+#### TAG: `UI-UX-DEPLOY-005`
 
-**목표:** 종합 테스트, 성능 최적화, 버그 수정
+**목표:** 반응형 디자인, 다크 모드, 배포 완성 (Phase 5 였으나 번호 조정)
 
 **상세 작업:**
 
@@ -594,6 +661,8 @@ AUTH-SYSTEM-002
     ↓
 TASK-CRUD-003
     ↓
+TODO-STATUS-001 ✅ (완료)
+    ↓
 FILTER-SEARCH-004
     ↓
 UI-UX-DEPLOY-005
@@ -608,9 +677,10 @@ main (프로덕션)
   ↑
 develop (개발)
   ↑
-  ├── feature/setup-env-001
-  ├── feature/auth-system-002
-  ├── feature/task-crud-003
+  ├── feature/setup-env-001 ✅
+  ├── feature/auth-system-002 ✅
+  ├── feature/task-crud-003 ✅
+  ├── feature/todo-status-001 ✅ (완료)
   ├── feature/filter-search-004
   ├── feature/ui-ux-deploy-005
   └── feature/test-optimize-006
