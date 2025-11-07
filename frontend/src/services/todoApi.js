@@ -92,6 +92,53 @@ export const todoApi = {
     const response = await api.get(`/todos/${id}/history`)
     return response.data
   },
+
+  // Search todos
+  async searchTodos(query, filters = {}) {
+    const params = new URLSearchParams()
+    if (query) params.append('q', query)
+    if (filters.status) params.append('status', filters.status)
+    if (filters.priority) params.append('priority', filters.priority)
+    if (filters.tags) params.append('tags', filters.tags.join(','))
+    if (filters.dateFrom) params.append('dateFrom', filters.dateFrom)
+    if (filters.dateTo) params.append('dateTo', filters.dateTo)
+    if (filters.limit) params.append('limit', filters.limit)
+    if (filters.offset) params.append('offset', filters.offset)
+
+    const response = await api.get(`/todos/search?${params}`)
+    return response.data
+  },
+
+  // Get search suggestions
+  async getSearchSuggestions(query) {
+    if (!query || query.length < 2) return []
+    const response = await api.get(`/todos/search/suggestions?q=${encodeURIComponent(query)}`)
+    return response.data
+  },
+
+  // Save search
+  async saveSearch(searchData) {
+    const response = await api.post('/searches/saved', searchData)
+    return response.data
+  },
+
+  // Get saved searches
+  async getSavedSearches() {
+    const response = await api.get('/searches/saved')
+    return response.data
+  },
+
+  // Delete saved search
+  async deleteSavedSearch(id) {
+    const response = await api.delete(`/searches/saved/${id}`)
+    return response.data
+  },
+
+  // Get search analytics
+  async getSearchAnalytics() {
+    const response = await api.get('/searches/analytics')
+    return response.data
+  },
 }
 
 export default todoApi
