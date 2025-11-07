@@ -158,6 +158,164 @@ todoSchema.index({ createdAt: -1 });
 todoSchema.index({ priority: 1 });
 todoSchema.index({ assignedTo: 1 });
 
+// Text search indexes for performance optimization
+todoSchema.index({
+  title: 'text',
+  description: 'text',
+  tags: 'text'
+}, {
+  weights: {
+    title: 10,
+    description: 5,
+    tags: 8
+  },
+  name: 'todo_text_search_index'
+});
+
+// Additional indexes for filtering and sorting
+todoSchema.index({ dueDate: 1 });
+todoSchema.index({ tags: 1 });
+todoSchema.index({ priority: 1, status: 1 });
+todoSchema.index({ createdAt: -1, status: 1 });
+
+// Static method for text search (refactored to reduce duplication)
+todoSchema.statics.searchByText = function(searchText, options = {}) {
+  const defaultOptions = {
+    includeScore: true,
+    sortByScore: true
+  };
+
+  const mergedOptions = { ...defaultOptions, ...options };
+  const query = { $text: { $search: searchText } };
+  const projection = mergedOptions.includeScore ? { score: { $meta: 'textScore' } } : {};
+  const sort = mergedOptions.sortByScore ? { score: { $meta: 'textScore' } } : { createdAt: -1 };
+
+  return this.find(query, projection).sort(sort);
+};
+
+// Static method for searching in title (convenience method)
+todoSchema.statics.searchInTitle = function(searchText) {
+  return this.searchByText(searchText);
+};
+
+// Static method for searching in description (convenience method)
+todoSchema.statics.searchInDescription = function(searchText) {
+  return this.searchByText(searchText);
+};
+
+// Static method for searching by tag
+todoSchema.statics.searchByTag = function(tag) {
+  return this.find({
+    tags: { $in: [tag] }
+  }).sort({ createdAt: -1 });
+};
+
+// Static method for finding by priority
+todoSchema.statics.findByPriority = function(priority) {
+  return this.find({
+    priority: priority
+  }).sort({ createdAt: -1 });
+};
+
+// Static method for finding by due date range
+todoSchema.statics.findByDueDateRange = function(startDate, endDate) {
+  return this.find({
+    dueDate: {
+      $gte: startDate,
+      $lte: endDate
+    }
+  }).sort({ dueDate: 1 });
+};
+
+// Static method for advanced search with multiple criteria (refactored)
+todoSchema.statics.advancedSearch = function(criteria) {
+  // If only text search is provided, use the optimized text search method
+  if (criteria.text && !criteria.priority && !criteria.status &&
+      !criteria.tags && !criteria.dueDateFrom && !criteria.dueDateTo &&
+      !criteria.assignedTo) {
+    return this.searchByText(criteria.text, {
+      sortByScore: criteria.sortBy === 'score' || !criteria.sortBy,
+      limit: criteria.limit,
+      skip: criteria.skip
+    });
+  }
+
+  // Complex search with multiple criteria
+  const query = {};
+  const sortOptions = {};
+
+  // Priority filter
+  if (criteria.priority) {
+    query.priority = criteria.priority;
+  }
+
+  // Status filter
+  if (criteria.status) {
+    query.status = criteria.status;
+  }
+
+  // Tags filter (match any of the provided tags)
+  if (criteria.tags && criteria.tags.length > 0) {
+    query.tags = { $in: criteria.tags };
+  }
+
+  // Due date range filter
+  if (criteria.dueDateFrom || criteria.dueDateTo) {
+    query.dueDate = {};
+    if (criteria.dueDateFrom) {
+      query.dueDate.$gte = criteria.dueDateFrom;
+    }
+    if (criteria.dueDateTo) {
+      query.dueDate.$lte = criteria.dueDateTo;
+    }
+  }
+
+  // Assigned to filter
+  if (criteria.assignedTo) {
+    query.assignedTo = criteria.assignedTo;
+  }
+
+  // Add text search if provided
+  if (criteria.text) {
+    query.$text = { $search: criteria.text };
+    sortOptions.score = { $meta: 'textScore' };
+  }
+
+  // Set up sorting
+  const sortBy = criteria.sortBy || 'createdAt';
+  const sortOrder = criteria.sortOrder || -1;
+  sortOptions[sortBy] = sortOrder;
+
+  // Build and execute the query
+  let dbQuery = this.find(query);
+
+  // Add sorting
+  dbQuery = dbQuery.sort(sortOptions);
+
+  // Pagination
+  if (criteria.limit) {
+    dbQuery = dbQuery.limit(criteria.limit);
+  }
+  if (criteria.skip) {
+    dbQuery = dbQuery.skip(criteria.skip);
+  }
+
+  return dbQuery;
+};
+
+// Create the model
 export const Todo = mongoose.model('Todo', todoSchema);
 
+// Helper function to create indexes
+export const createTodoIndexes = async () => {
+  try {
+    await Todo.createIndexes();
+    console.log('✅ Todo indexes created successfully');
+  } catch (error) {
+    console.error('❌ Error creating Todo indexes:', error);
+    throw error;
+  }
+};
+
 // @CODE:TODO-STATUS-MODEL-001
+// @CODE:FILTER-SEARCH-004:MODEL

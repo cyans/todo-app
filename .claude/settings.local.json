@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(npx prettier:*)",
-      "Bash(npm run test:coverage:*)"
+      "Bash(npm run test:coverage:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run build)",
+      "SlashCommand(/alfred:3-sync)",
+      "SlashCommand(/alfred:1-plan FILTER-SEARCH-004)",
+      "SlashCommand(/alfred:2-run SPEC-FILTER-SEARCH-004)",
+      "Bash(npm run)",
+      "Bash(npm audit:*)"
     ],
     "deny": [],
     "ask": []

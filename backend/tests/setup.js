@@ -1,6 +1,7 @@
 // Test setup file for Jest
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import { createTodoIndexes } from '../src/models/todo-model.js';
 
 let mongoServer;
 
@@ -9,6 +10,9 @@ beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri();
   await mongoose.connect(mongoUri);
+
+  // Ensure text indexes are created for all tests
+  await createTodoIndexes();
 });
 
 // Cleanup after all tests
