@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/cyans/todo-app)
 [![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](./tests)
+[![Version](https://img.shields.io/badge/version-1.2.0-blue)](https://github.com/cyans/todo-app)
 
 Full-stack To-Do List application with React frontend, Express backend, and MongoDB database.
 
@@ -13,7 +14,7 @@ Full-stack To-Do List application with React frontend, Express backend, and Mong
 **Current Phase:** UI/UX Enhancement and Deployment System Implementation
 **Progress:** ✅ Complete - Docker deployment system and enhanced UI/UX features
 
-**Latest Implementation:** @CODE:TODO-BACKEND-001 @CODE:TODO-FRONTEND-001 @CODE:TODO-APP-001 @CODE:TODO-SERVICE-001 @CODE:TODO-API-002
+**Latest Implementation:** @CODE:TODO-BACKEND-001 @CODE:TODO-FRONTEND-001 @CODE:TODO-APP-001 @CODE:TODO-SERVICE-001 @CODE:TODO-API-002 @DOC:TODO-API-001 @CODE:TODO-APP-002
 
 ## 📂 Project Structure
 
@@ -170,6 +171,7 @@ docker logs todo-frontend
 - ✅ **Phase 4:** Filter/Search/Sort (FILTER-SEARCH-004) - **COMPLETE**
 - ✅ **Phase 5:** UI/UX & Deployment (UI-UX-DEPLOY-005) - **COMPLETE**
 - ✅ **Phase 6:** Testing & Optimization (TEST-OPTIMIZE-006) - **COMPLETE** (95% coverage achieved)
+- ✅ **Phase 7:** Enhanced UI/UX & Deployment (SPEC-UI-UX-DEPLOY-005) - **COMPLETE** (v1.2.0 features)
 
 ## 🚀 Docker Deployment System
 
@@ -195,12 +197,82 @@ docker-compose -f docker-compose.prod.yml up -d
 # - mongodb: Production MongoDB instance
 ```
 
-### Health Monitoring
+### Health Monitoring System
 - **Backend Health:** `GET /health`, `GET /ready`, `GET /live`
-- **Frontend Health:** Nginx health checks
-- **Database Health:** MongoDB connection monitoring
+- **Frontend Health:** Nginx health checks with proxy caching
+- **Database Health:** MongoDB connection monitoring and performance metrics
+- **Container Health:** Docker health checks with automatic restart
+- **Performance Monitoring:** Real-time response time tracking and optimization
+- **Logging System:** Structured logging with Winston for debugging and monitoring
+
+### Enhanced Docker Deployment Process
+#### Development Environment Setup
+```bash
+# 1. Clone and setup
+git clone https://github.com/cyans/todo-app.git
+cd todo-app
+cp .env.example .env
+# Configure environment variables for MongoDB and API URLs
+
+# 2. Start development environment
+docker-compose up --build
+
+# 3. Monitor services
+docker-compose logs -f
+docker-compose ps
+docker-compose exec backend curl http://localhost:5000/health
+
+# 4. Run tests
+docker-compose exec backend npm test
+docker-compose exec frontend npm test
+```
+
+#### Production Deployment Process
+```bash
+# 1. Build production images
+docker-compose -f docker-compose.prod.yml build --no-cache
+
+# 2. Deploy with health checks
+docker-compose -f docker-compose.prod.yml up -d
+
+# 3. Monitor production health
+docker-compose -f docker-compose.prod.yml logs -f
+docker-compose -f docker-compose.prod.yml ps
+docker-compose -f docker-compose.prod.yml exec curl http://localhost/health
+
+# 4. Scale services
+docker-compose -f docker-compose.prod.yml up -d --scale backend=3 --scale frontend=2
+```
+
+### Monitoring and Maintenance
+- **Health Check Endpoints:**
+  - Backend: `/health`, `/ready`, `/live`, `/startup`
+  - Frontend: Nginx health checks
+  - Database: MongoDB connection and performance metrics
+
+- **Performance Monitoring:**
+  - API response time tracking
+  - Memory usage monitoring
+  - Database query optimization
+  - Frontend load performance
+
+- **Logging System:**
+  - Structured logging with Winston
+  - Multi-level log filtering
+  - Centralized log collection
+  - Performance and error logging
 
 ## 🎯 Enhanced Features
+
+### v1.2.0 New Features
+- **🎨 Enhanced UI/UX Improvements:** Modernized components with improved user experience
+- **🔍 Advanced Search Bar:** Real-time search with voice input integration
+- **📱 Responsive Design:** Mobile-first approach with flexbox layouts
+- **🌙 Dark Mode:** Automatic theme detection with manual override
+- **♿ Accessibility Enhancements:** WCAG 2.1 compliant components
+- **⚡ Performance Monitoring:** Built-in performance tracking and optimization
+- **📊 Enhanced Statistics Dashboard:** Comprehensive overview with real-time metrics
+- **🚀 Docker Deployment System:** Multi-stage builds with health checks
 
 ### v1.1.0 New Features
 - **🐳 Docker Containerization:** Complete deployment system
@@ -559,5 +631,5 @@ MIT
 ---
 
 **Last Updated:** 2025-11-10
-**Version:** 1.1.0 - UI/UX Enhancements and Docker Deployment System Complete
-**TAG:** @DOC:TODO-API-001 @CODE:TODO-SERVICE-001 @CODE:TODO-API-002 @CODE:TODO-BACKEND-001 @CODE:TODO-FRONTEND-001 @CODE:TODO-APP-001
+**Version:** 1.2.0 - Enhanced UI/UX and Deployment System Complete
+**TAG:** @DOC:TODO-API-001 @CODE:TODO-SERVICE-001 @CODE:TODO-API-002 @CODE:TODO-BACKEND-001 @CODE:TODO-FRONTEND-001 @CODE:TODO-APP-001 @DOC:TODO-API-001 @CODE:TODO-APP-002

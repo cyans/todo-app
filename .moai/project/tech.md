@@ -1,9 +1,9 @@
 ---
 id: TECH-001
-version: 1.0.0
+version: 1.1.0
 status: active
 created: 2025-11-08
-updated: 2025-11-08
+updated: 2025-11-10
 author: @project-manager
 priority: high
 ---
@@ -14,10 +14,12 @@ priority: high
 
 ### v1.1.0 (2025-11-10)
 - **UPDATED**: UI/UX 향상 및 Docker 배포 시스템 기술 업데이트
+- **IMPLEMENTED**: 고급 모니터링 시스템, 성능 추적 기술, 배포 인프라
 - **AUTHOR**: @doc-syncer
 - **USER**: GOOS (cyans)
 - **LANGUAGE**: 한국어 (ko)
 - **STATUS**: TailwindCSS 도입 및 Docker 프로덕션 배포 시스템 추가
+- **TAGS**: @CODE:TODO-BACKEND-001 @CODE:TODO-FRONTEND-001 @CODE:TODO-APP-001 @CODE:TODO-SERVICE-001 @CODE:TODO-API-002 @DOC:TODO-API-001 @CODE:TODO-APP-002
 
 ### v1.0.0 (2025-11-08)
 - **UPDATED**: 기술 스택 분석 및 한국어 문서화
@@ -158,6 +160,110 @@ npm run test:coverage        # 커버리지 확인
 - **민감 데이터 마스킹**: 비밀번호, 토큰, 개인정보 자동 마스킹
 - **보관 정책**: 30일 (개발), 90일 (프로덕션)
 
+## @DOC:MONITORING-001 모니터링 시스템 기술 스택
+
+### 모니터링 도구 및 기술
+
+**Todo 애플리케이션은 완벽한 모니터링 시스템을 통해 실시간 상태 추적을 제공합니다.**
+
+### 백엔드 모니터링 기술
+
+```json
+{
+  "monitoring": {
+    "performance": {
+      "tool": "Express middleware",
+      "metrics": ["response_time", "memory_usage", "cpu_usage"],
+      "thresholds": {"response_time": "200ms", "memory": "100MB"}
+    },
+    "logging": {
+      "tool": "Winston 3.18.3",
+      "levels": ["error", "warn", "info", "debug"],
+      "format": "structured",
+      "transport": ["console", "file"]
+    },
+    "health_check": {
+      "endpoints": ["/health", "/ready", "/live", "/startup"],
+      "monitoring": "Docker health check",
+      "frequency": "30s"
+    }
+  }
+}
+```
+
+### 프론트엔드 모니터링 기술
+
+```json
+{
+  "frontend_monitoring": {
+    "performance": {
+      "vite": "Vite 빌드 성능 모니터링",
+      "react": "React 컴포넌트 성능 추적",
+      "loading": "초기 로드 시간 측정"
+    },
+    "accessibility": {
+      "tool": "WCAG 2.1",
+      "features": ["ARIA labels", "keyboard navigation", "screen reader"],
+      "validation": "Lighthouse 통합"
+    },
+    "responsive": {
+      "breakpoints": ["mobile", "tablet", "desktop"],
+      "testing": "다양한 해상도 테스트",
+      "optimization": "TailwindCSS 반응형 디자인"
+    }
+  }
+}
+```
+
+### 성능 모니터링 기술
+
+```json
+{
+  "performance_monitoring": {
+    "api": {
+      "metrics": ["response_time", "throughput", "error_rate"],
+      "tools": ["Express middleware", "Docker stats"],
+      "collection": "실시간 데이터 수집",
+      "alerting": "임계값 초과 시 알림"
+    },
+    "frontend": {
+      "metrics": ["first_contentful_paint", "largest_contentful_paint", "interaction_to_next_paint"],
+      "tools": ["Vite", "React DevTools"],
+      "optimization": ["code_splitting", "lazy_loading", "caching"]
+    },
+    "database": {
+      "metrics": ["query_time", "connection_pool", "index_usage"],
+      "tools": ["MongoDB profiler", "Mongoose middleware"],
+      "optimization": ["indexing", "query_optimization"]
+    }
+  }
+}
+```
+
+### 로깅 및 추적 기술
+
+```json
+{
+  "logging_tracing": {
+    "structured": {
+      "format": "JSON",
+      "fields": ["timestamp", "level", "message", "service", "request_id"],
+      "retention": {"development": "7d", "production": "90d"}
+    },
+    "aggregation": {
+      "tools": ["ELK Stack (optional)", "Docker logging"],
+      "collection": "중앙 집중적 로그 수집",
+      "analysis": "패턴 분석 및 알림"
+    },
+    "error_tracking": {
+      "tools": ["Winston error handlers"],
+      "alerting": "에러 발생 시 실시간 알림",
+      "recovery": "자동 복구 메커니즘"
+    }
+  }
+}
+```
+
 ## @DOC:DEPLOY-001 릴리스 채널 및 전략
 
 ### 1. 배포 채널
@@ -173,42 +279,110 @@ npm run test:coverage        # 커버리지 확인
 # Docker Compose 구조 (개발 환경)
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     ports: ["5173:5173"]
-    volumes: ["./frontend/src:/app/src"]
+    volumes: ["./frontend/src:/app/src", "/app/node_modules"]
+    environment: ["VITE_API_URL=http://localhost:5000"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports: ["5000:5000"]
-    environment: ["MONGODB_URI=mongodb://localhost:27017/todo-app"]
-    depends_on: ["mongodb"]
+    environment:
+      - "MONGODB_URI=mongodb://mongodb:27017/todo-app"
+      - "NODE_ENV=development"
+      - "LOG_LEVEL=debug"
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
   mongodb:
     image: mongo:7.0
     ports: ["27017:27017"]
     volumes: ["mongodb_data:/data/db"]
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 ```
 
-```yaml
-# Docker Compose 구조 (프로덕션 환경)
-services:
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.prod
-    ports: ["80:80"]
-    depends_on: ["backend"]
-  backend:
-    build: ./backend
-    ports: ["5000:5000"]
-    environment: ["NODE_ENV=production"]
-    healthcheck: ["CMD", "curl", "-f", "http://localhost:5000/health"]
-  nginx:
-    image: nginx:alpine
-    ports: ["80:80"]
-    volumes: ["./nginx/nginx.conf:/etc/nginx/nginx.conf"]
-    depends_on: ["frontend", "backend"]
+### 3. 프로덕션 배포 인프라 기술 사양
+
+```json
+{
+  "production_infrastructure": {
+    "frontend": {
+      "technology": "React 19.1.1 + Vite 7.1.7",
+      "container": "Multi-stage Docker build",
+      "reverse_proxy": "Nginx 1.25+",
+      "features": [
+        "Gzip compression",
+        "Browser caching",
+        "HTTPS redirect",
+        "Security headers",
+        "Static file serving"
+      ],
+      "performance": {
+        "build_optimization": "Code splitting, tree shaking",
+        "cdn_integration": "Cloudflare support",
+        "caching_strategy": "Browser + CDN caching"
+      }
+    },
+    "backend": {
+      "technology": "Node.js 20.x LTS + Express 5.1.0",
+      "container": "Multi-stage build + Alpine Linux",
+      "scaling": "Horizontal auto-scaling",
+      "monitoring": "Health check endpoints",
+      "features": [
+        "Performance monitoring",
+        "Structured logging",
+        "Error handling",
+        "Request validation",
+        "Security hardening"
+      ]
+    },
+    "database": {
+      "technology": "MongoDB 7.0.x",
+      "replication": "Replica set support",
+      "backup": "Automated daily backups",
+      "monitoring": "Query profiling, performance metrics",
+      "storage": "Persistent volumes"
+    },
+    "infrastructure": {
+      "orchestration": "Docker Compose + Kubernetes support",
+      "networking": "Service mesh, load balancing",
+      "security": "Network policies, TLS encryption",
+      "monitoring": "Prometheus + Grafana integration"
+    }
+  }
+}
 ```
 
-### 3. 개발자 환경 설정
+### 4. CI/CD 파이프라인 기술 사양
+
+| 단계 | 도구 | 기술 사양 | 성공 기준 |
+| --- | ---- | --------- | --------- |
+| **코드 관리** | Git | Git hooks, GitHub Actions | 코드 품질 검사 통과 |
+| **빌드** | Docker | Multi-stage build, 이미지 최적화 | 빌드 성공, 이미지 크기 최적화 |
+| **테스트** | Jest/Vitest | 95% 커버리지, E2E 테스트 | 모든 테스트 통과 |
+| **정적 분석** | ESLint/Prettier | 코드 품질, 포맷팅 표준 | 품질 게이트 통과 |
+| **보안** | npm audit, Snyk | 취약점 검사, 보안 스캔 | 중간 이상 취약점 없음 |
+| **배포** | Docker Compose | 자동화 배포, 롤아웃 | 배포 성공, 상태 확인 |
+| **모니터링** | Health Check | 실시간 상태 모니터링 | 모든 서비스 Healthy |
+
+### 5. 개발자 환경 설정
 
 ```bash
 # 개발 모드 설정
@@ -228,7 +402,7 @@ cp .env.example .env
 npm run dev
 ```
 
-### 3. CI/CD 파이프라인
+### 6. CI/CD 파이프라인
 
 | 단계 | 목적 | 도구 | 성공 기준 |
 | --- | ---- | ---- | --------- |

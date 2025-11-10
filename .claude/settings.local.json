@@ -38,7 +38,8 @@
       "Bash(gh:*)",
       "Bash(cat:*)",
       "Bash(npm audit:*)",
-      "Bash(npm run build)"
+      "Bash(npm run build)",
+      "SlashCommand(/alfred:3-sync auto)"
     ],
     "deny": [],
     "ask": []
