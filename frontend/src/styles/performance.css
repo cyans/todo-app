@@ -1,0 +1,489 @@
+/* @CODE:TAG-UI-PERFORMANCE-001 - Performance optimization styles */
+
+/* ===== LazyImage Component Styles ===== */
+.lazy-image {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  border-radius: var(--radius-md);
+  transition: opacity var(--transition-normal);
+}
+
+.lazy-image--responsive {
+  width: 100%;
+  height: auto;
+}
+
+.lazy-image--loading {
+  opacity: 0.7;
+}
+
+.lazy-image__loaded {
+  opacity: 1;
+}
+
+.lazy-image__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--transition-normal);
+}
+
+.lazy-image__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+}
+
+.lazy-image__placeholder--blur {
+  filter: blur(10px);
+  transform: scale(1.1);
+}
+
+.lazy-image__placeholder--color {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.lazy-image__placeholder--skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.lazy-image__loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.lazy-image__spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.lazy-image__blur-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(20px);
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.lazy-image__skeleton-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.lazy-image__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fef2f2;
+  color: #dc2626;
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.lazy-image__error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.lazy-image__error-icon {
+  font-size: 2rem;
+  opacity: 0.7;
+}
+
+.lazy-image__error-text {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* ===== LazyComponent Component Styles ===== */
+.lazy-component {
+  position: relative;
+}
+
+.lazy-component__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  background-color: #f9fafb;
+  border: 1px dashed #d1d5db;
+  border-radius: var(--radius-md);
+  color: #6b7280;
+}
+
+.lazy-component__placeholder {
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+.lazy-component__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: var(--space-lg);
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  color: #dc2626;
+  text-align: center;
+}
+
+.lazy-component__error h3,
+.lazy-component__error h4 {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.lazy-component__error p {
+  margin: 0 0 var(--space-md) 0;
+  font-size: var(--font-size-sm);
+  color: #991b1b;
+}
+
+.lazy-component__error button {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid #dc2626;
+  border-radius: var(--radius-sm);
+  background-color: #dc2626;
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.lazy-component__error button:hover {
+  background-color: #b91c1c;
+  border-color: #b91c1c;
+}
+
+/* ===== Performance Utilities ===== */
+/* Critical CSS inlining helper */
+.critical-css {
+  /* Styles that are needed for above-the-fold content */
+}
+
+.non-critical-css {
+  /* Styles that can be loaded later */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Performance monitoring indicators */
+.performance-indicator {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+  padding: var(--space-xs) var(--space-sm);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-family: monospace;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.performance-indicator.visible {
+  opacity: 1;
+}
+
+.performance-indicator--good {
+  background-color: rgba(16, 185, 129, 0.9);
+}
+
+.performance-indicator--warning {
+  background-color: rgba(245, 158, 11, 0.9);
+}
+
+.performance-indicator--error {
+  background-color: rgba(239, 68, 68, 0.9);
+}
+
+/* Loading states */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Content visibility optimization */
+.optimize-content-visibility {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+.optimize-will-change {
+  will-change: transform;
+}
+
+.optimize-contain {
+  contain: layout style paint;
+}
+
+/* Image optimization */
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.optimize-image-rendering {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Font loading optimization */
+.font-display-swap {
+  font-display: swap;
+}
+
+.font-display-optional {
+  font-display: optional;
+}
+
+.font-display-fallback {
+  font-display: fallback;
+}
+
+/* Animation performance */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.smooth-animation {
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
+  will-change: transform, opacity;
+}
+
+/* Scroll performance */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  overflow-anchor: none;
+}
+
+.optimize-scroll {
+  overflow-anchor: auto;
+  scroll-behavior: auto;
+}
+
+/* Network optimization */
+.preload-critical {
+  /* Indicates critical resources that should be preloaded */
+}
+
+.prefetch-next {
+  /* Indicates resources that should be prefetched */
+}
+
+/* Bundle size optimization */
+.tree-shakeable {
+  /* Styles that can be tree-shaken */
+}
+
+.code-split-friendly {
+  /* Styles that work well with code splitting */
+}
+
+/* Memory optimization */
+.cleanup-on-unmount {
+  /* Styles for components that need cleanup */
+}
+
+.memory-efficient {
+  /* Memory-efficient animations and transitions */
+  animation: none;
+  transition: none;
+}
+
+.memory-efficient:hover {
+  transition: var(--transition-fast);
+}
+
+/* Responsive images */
+.picture-element {
+  width: 100%;
+  height: auto;
+}
+
+.source-element {
+  width: 100%;
+}
+
+/* CSS containment */
+.contain-layout {
+  contain: layout;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+.contain-style {
+  contain: style;
+}
+
+.contain-size {
+  contain: size;
+}
+
+.contain-strict {
+  contain: strict;
+}
+
+.contain-content {
+  contain: content;
+}
+
+/* Performance breakpoints */
+@media (prefers-reduced-motion: reduce) {
+  .gpu-accelerated,
+  .smooth-animation {
+    animation: none;
+    transition: none;
+    transform: none;
+  }
+
+  .loading-skeleton {
+    animation: none;
+    background: #f0f0f0;
+  }
+
+  .loading-spinner {
+    animation: none;
+    border-top-color: #e5e7eb;
+  }
+}
+
+/* High DPI display optimization */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .optimize-image-rendering {
+    image-rendering: auto;
+  }
+}
+
+/* Print optimization */
+@media print {
+  .lazy-image__loading-overlay,
+  .lazy-component__loading,
+  .performance-indicator {
+    display: none !important;
+  }
+
+  .lazy-image,
+  .lazy-component {
+    break-inside: avoid;
+  }
+}
+
+/* Low bandwidth optimization */
+@media (prefers-reduced-data: reduce) {
+  .lazy-image__placeholder--blur {
+    background-image: none;
+    background-color: #f3f4f6;
+  }
+
+  .loading-skeleton,
+  .shimmer {
+    animation: none;
+    background: #f0f0f0;
+  }
+
+  .gpu-accelerated {
+    transform: none;
+  }
+}

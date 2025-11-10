@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import responsive design system */
+@import './styles/responsive.css';
+@import './styles/grid.css';
+@import './styles/components.css';
+@import './styles/animations.css';
+@import './styles/micro-interactions.css';
+@import './styles/accessibility.css';
+@import './styles/performance.css';
+@import './styles/compatibility.css';
+
 /* Custom styles */
 @layer base {
   body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    background-color: #f9fafb;
+    color: #111827;
+  }
+
+  body.dark {
+    background-color: #111827;
+    color: #f9fafb;
   }
 }
 
 @layer components {
-  /* Custom component styles will go here */
+  /* Custom component styles are imported from components.css */
 }

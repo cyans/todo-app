@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "SlashCommand(/alfred:2-run SPEC-UI-UX-DEPLOY-005)",
+      "Bash(npm test:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run test:*)",
+      "Bash(npx vitest run:*)",
+      "Bash(npx vite build:*)",
+      "Bash(npm run test:docker:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run test:deploy:*)",
+      "Bash(npx jest:*)",
+      "Bash(frontend/.env.production)",
+      "Bash(node --test:*)",
+      "Bash(timeout 30 node --test:*)",
+      "Bash(find:*)",
+      "Bash(curl:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm start)",
+      "Bash(npx playwright screenshot:*)",
+      "Bash(pkill:*)",
+      "Bash(taskkill:*)",
+      "Bash(nul)",
+      "Bash(node debug-checkbox:*)",
+      "Bash(findstr:*)",
+      "Bash(npx playwright install:*)",
+      "Bash(puppeteer screenshot:*)",
+      "Bash(screenshots/current-page.html)",
+      "Bash(node:*)",
+      "Bash(current_app.html)",
+      "Bash(app_screenshot.html)",
+      "Bash(timeout:*)",
+      "Bash(copy:*)",
+      "Bash(netstat:*)",
+      "Skill(moai-alfred-interactive-questions)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,0 +1,980 @@
+<!DOCTYPE html><html lang="en" data-critical-css-loaded="true" data-connection="fast"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frontend</title>
+  <style type="text/css" data-vite-dev-id="D:/claude_code/todo/frontend/src/index.css">/*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com */
+@layer properties;
+.pointer-events-none {
+  pointer-events: none;
+}
+.visible {
+  visibility: visible;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.static {
+  position: static;
+}
+.sticky {
+  position: sticky;
+}
+.top-full {
+  top: 100%;
+}
+.bottom-full {
+  bottom: 100%;
+}
+.left-1\/2 {
+  left: calc(1/2 * 100%);
+}
+.z-50 {
+  z-index: 50;
+}
+.container {
+  width: 100%;
+}
+.mx-auto {
+  margin-inline: auto;
+}
+.box-border {
+  box-sizing: border-box;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+.hidden {
+  display: none;
+}
+.inline {
+  display: inline;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.table {
+  display: table;
+}
+.h-auto {
+  height: auto;
+}
+.h-full {
+  height: 100%;
+}
+.min-h-\[56px\] {
+  min-height: 56px;
+}
+.min-h-screen {
+  min-height: 100vh;
+}
+.w-auto {
+  width: auto;
+}
+.w-full {
+  width: 100%;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.-translate-x-1\/2 {
+  --tw-translate-x: calc(calc(1/2 * 100%) * -1);
+  translate: var(--tw-translate-x) var(--tw-translate-y);
+}
+.scale-75 {
+  --tw-scale-x: 75%;
+  --tw-scale-y: 75%;
+  --tw-scale-z: 75%;
+  scale: var(--tw-scale-x) var(--tw-scale-y);
+}
+.scale-100 {
+  --tw-scale-x: 100%;
+  --tw-scale-y: 100%;
+  --tw-scale-z: 100%;
+  scale: var(--tw-scale-x) var(--tw-scale-y);
+}
+.transform {
+  transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.resize {
+  resize: both;
+}
+.resize-none {
+  resize: none;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.items-center {
+  align-items: center;
+}
+.items-end {
+  align-items: flex-end;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-center {
+  justify-content: center;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-visible {
+  overflow: visible;
+}
+.rounded-full {
+  border-radius: calc(infinity * 1px);
+}
+.border {
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+}
+.border-2 {
+  border-style: var(--tw-border-style);
+  border-width: 2px;
+}
+.border-4 {
+  border-style: var(--tw-border-style);
+  border-width: 4px;
+}
+.border-transparent {
+  border-color: transparent;
+}
+.border-t-transparent {
+  border-top-color: transparent;
+}
+.bg-gradient-to-br {
+  --tw-gradient-position: to bottom right in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+}
+.bg-gradient-to-r {
+  --tw-gradient-position: to right in oklab;
+  background-image: linear-gradient(var(--tw-gradient-stops));
+}
+.bg-clip-text {
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.break-words {
+  overflow-wrap: break-word;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
+}
+.text-transparent {
+  color: transparent;
+}
+.line-through {
+  text-decoration-line: line-through;
+}
+.opacity-0 {
+  opacity: 0%;
+}
+.opacity-75 {
+  opacity: 75%;
+}
+.opacity-100 {
+  opacity: 100%;
+}
+.outline {
+  outline-style: var(--tw-outline-style);
+  outline-width: 1px;
+}
+.filter {
+  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+}
+.transition {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
+  transition-timing-function: var(--tw-ease, ease);
+  transition-duration: var(--tw-duration, 0s);
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: var(--tw-ease, ease);
+  transition-duration: var(--tw-duration, 0s);
+}
+.transition-colors {
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+  transition-timing-function: var(--tw-ease, ease);
+  transition-duration: var(--tw-duration, 0s);
+}
+.duration-200 {
+  --tw-duration: 200ms;
+  transition-duration: 200ms;
+}
+.will-change-transform {
+  will-change: transform;
+}
+.group-hover\:scale-100 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      --tw-scale-x: 100%;
+      --tw-scale-y: 100%;
+      --tw-scale-z: 100%;
+      scale: var(--tw-scale-x) var(--tw-scale-y);
+    }
+  }
+}
+.group-hover\:opacity-100 {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      opacity: 100%;
+    }
+  }
+}
+.hover\:scale-\[1\.02\] {
+  &:hover {
+    @media (hover: hover) {
+      scale: 1.02;
+    }
+  }
+}
+.focus\:border-transparent {
+  &:focus {
+    border-color: transparent;
+  }
+}
+.focus\:ring-2 {
+  &:focus {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+}
+.focus\:ring-4 {
+  &:focus {
+    --tw-ring-shadow: var(--tw-ring-inset,) 0 0 0 calc(4px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+}
+.focus\:ring-offset-2 {
+  &:focus {
+    --tw-ring-offset-width: 2px;
+    --tw-ring-offset-shadow: var(--tw-ring-inset,) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  }
+}
+.focus\:outline-none {
+  &:focus {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+}
+.active\:scale-\[0\.98\] {
+  &:active {
+    scale: 0.98;
+  }
+}
+.disabled\:cursor-not-allowed {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+.disabled\:opacity-50 {
+  &:disabled {
+    opacity: 50%;
+  }
+}
+@layer base {
+  body {
+    background-color: #f9fafb;
+    color: #111827;
+  }
+  body.dark {
+    background-color: #111827;
+    color: #f9fafb;
+  }
+}
+@layer components;
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-scale-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-scale-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 1;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-blur {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-brightness {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-contrast {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-grayscale {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-hue-rotate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-invert {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-opacity {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-saturate {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-inset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-shadow-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-shadow-alpha {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-inset-ring-color {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-inset-ring-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@property --tw-ring-inset {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-ring-offset-width {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --tw-ring-offset-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: #fff;
+}
+@property --tw-ring-offset-shadow {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0 0 #0000;
+}
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-scale-x: 1;
+      --tw-scale-y: 1;
+      --tw-scale-z: 1;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
+      --tw-border-style: solid;
+      --tw-outline-style: solid;
+      --tw-blur: initial;
+      --tw-brightness: initial;
+      --tw-contrast: initial;
+      --tw-grayscale: initial;
+      --tw-hue-rotate: initial;
+      --tw-invert: initial;
+      --tw-opacity: initial;
+      --tw-saturate: initial;
+      --tw-sepia: initial;
+      --tw-drop-shadow: initial;
+      --tw-drop-shadow-color: initial;
+      --tw-drop-shadow-alpha: 100%;
+      --tw-drop-shadow-size: initial;
+      --tw-duration: initial;
+      --tw-shadow: 0 0 #0000;
+      --tw-shadow-color: initial;
+      --tw-shadow-alpha: 100%;
+      --tw-inset-shadow: 0 0 #0000;
+      --tw-inset-shadow-color: initial;
+      --tw-inset-shadow-alpha: 100%;
+      --tw-ring-color: initial;
+      --tw-ring-shadow: 0 0 #0000;
+      --tw-inset-ring-color: initial;
+      --tw-inset-ring-shadow: 0 0 #0000;
+      --tw-ring-inset: initial;
+      --tw-ring-offset-width: 0px;
+      --tw-ring-offset-color: #fff;
+      --tw-ring-offset-shadow: 0 0 #0000;
+    }
+  }
+}
+</style><style id="critical-css" data-critical="true">
+/* Critical CSS - Above the fold styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
+  color: #111827;
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+/* Loading states */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Basic flexbox for immediate layout */
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex--col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex--center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* Touch targets */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: #374151;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-target:hover {
+  background-color: #f3f4f6;
+}
+
+.touch-target:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: 0.875rem; }
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* Input elements */
+input, textarea, select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: white;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  -webkit-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: white;
+  color: #374151;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:hover {
+  background-color: #f3f4f6;
+}
+
+button:focus {
+  outline: none;
+  border-color: #3b82f6;
+  -webkit-box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* Basic layout */
+.page-header {
+  padding: 1rem 0;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: white;
+}
+
+.page-content {
+  padding: 1rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+/* Utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-4 { margin-top: 1rem; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: 0.25rem; }
+.p-2 { padding: 0.5rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+
+/* Responsive typography */
+@media (min-width: 640px) {
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.875rem; }
+  h3 { font-size: 1.5rem; }
+  h4 { font-size: 1.25rem; }
+}
+
+@media (min-width: 1024px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.25rem; }
+  h3 { font-size: 1.875rem; }
+  h4 { font-size: 1.5rem; }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Prevent flash of unstyled content */
+.no-js .js-only {
+  display: none !important;
+}
+
+.js .no-js-only {
+  display: none !important;
+}
+</style></head>
+  <body>
+    <div id="root"><div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-visible"><div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 max-w-4xl xl:max-w-5xl overflow-visible"><header class="mb-8 sm:mb-12 text-center"><h1 class="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">내 할 일</h1><p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">오늘의 목표를 설정하고, 하나씩 완료해나가며 성취감을 느껴보세요</p></header><main class="space-y-8"><form class="mb-8"><div class="bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 overflow-visible backdrop-blur-sm"><div class="p-6 sm:p-8 space-y-6"><div class="text-center mb-2"><h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">새로운 할 일</h2><p class="text-sm text-gray-500 dark:text-gray-400">오늘의 목표를 설정해보세요</p></div><div class="space-y-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><span class="text-gray-400 text-xl">📝</span></div><div class="flex-1 relative"><input id="title" placeholder="무엇을 해야 하나요?" class="w-full max-w-2xl px-4 py-4 text-lg font-medium text-gray-900 dark:text-white
+                           placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-800
+                           border-2 border-gray-200 dark:border-gray-600 rounded-xl
+                           focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none
+                           disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200
+                           shadow-sm hover:shadow-md box-border" maxlength="100" autocomplete="off" type="text" value="" name="title"><div class="absolute inset-y-0 right-0 pr-4 flex items-center"><div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div></div></div></div><div class="flex items-start gap-3"><div class="flex-shrink-0 pt-4"><span class="text-gray-400 text-xl">📄</span></div><div class="flex-1"><textarea id="description" name="description" placeholder="더 자세한 내용이 있다면 적어주세요 (선택사항)" rows="3" class="w-full max-w-2xl px-4 py-4 text-base font-normal text-gray-900 dark:text-white
+                           placeholder-gray-400 dark:placeholder-gray-500 bg-white dark:bg-gray-800
+                           border-2 border-gray-200 dark:border-gray-600 rounded-xl
+                           focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none
+                           disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200
+                           resize-none shadow-sm hover:shadow-md box-border" maxlength="500" autocomplete="off"></textarea></div></div></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-visible"><div class="lg:col-span-1"><label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span class="flex items-center gap-2"><span>📅</span><span>마감일</span></span></label><div class="relative z-50"><input id="dueDate" class="w-full max-w-2xl px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300
+                           bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl
+                           focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 focus:outline-none
+                           disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200
+                           shadow-sm hover:shadow-md box-border" min="2025-11-08" type="date" value="" name="dueDate"></div></div><div class="lg:col-span-1"><label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"><span class="flex items-center gap-2"><span>⚡</span><span>중요도</span></span></label><div class="flex gap-2"><button type="button" class="flex-1 px-3 py-3 text-sm font-medium rounded-lg border-2 transition-all duration-200
+                    border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-green-300 dark:hover:border-green-700">낮음</button><button type="button" class="flex-1 px-3 py-3 text-sm font-medium rounded-lg border-2 transition-all duration-200
+                    border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-300">보통</button><button type="button" class="flex-1 px-3 py-3 text-sm font-medium rounded-lg border-2 transition-all duration-200
+                    border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:border-red-300 dark:hover:border-red-700">높음</button></div></div><div class="lg:col-span-1 flex items-end"><button type="submit" disabled="" class="w-full px-6 py-4 text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700
+                         dark:from-blue-500 dark:to-purple-500 dark:hover:from-blue-600 dark:hover:to-purple-600
+                         rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+                         shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]
+                         flex items-center justify-center gap-3 min-h-[56px]" title="할 일 추가"><span class="text-xl">✨</span><span>할 일 추가하기</span></button></div></div></div></div></form><div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6"><div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6"><div class="flex flex-wrap items-center gap-2"><button class="px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"><span class="flex items-center gap-2"><span>📋</span><span>전체</span><span class="bg-white/20 dark:bg-black/20 px-2 py-1 rounded-lg text-xs">5</span></span></button><button class="px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"><span class="flex items-center gap-2"><span>⚡</span><span>진행중</span><span class="bg-white/20 dark:bg-black/20 px-2 py-1 rounded-lg text-xs">4</span></span></button><button class="px-6 py-3 text-sm font-semibold rounded-xl transition-all duration-200 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600"><span class="flex items-center gap-2"><span>✅</span><span>완료됨</span><span class="bg-white/20 dark:bg-black/20 px-2 py-1 rounded-lg text-xs">1</span></span></button></div><div class="flex items-center gap-3"><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">정렬:</span><div class="flex gap-2"><button class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-2 border-blue-300 dark:border-blue-600"><span>📅</span><span>마감일</span></button><button class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 border-2 border-transparent"><span>⚡</span><span>우선순위</span></button><button class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 border-2 border-transparent"><span>🕐</span><span>생성일</span></button><button class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 border-2 border-transparent"><span>📝</span><span>제목</span></button></div></div></div></div><div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-6"><div data-testid="todo-list" class="space-y-3 "><div class="space-y-3"><div data-testid="todo-item" class="
+        group relative mb-3 last:mb-0
+        opacity-75
+        
+      "><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><div class="relative group"><input class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded-sm cursor-pointer
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50
+                           opacity-0 absolute" aria-label="Mark 백엔드 API 연동 테스트 as incomplete" type="checkbox" checked=""><div class="w-5 h-5 border-2 border-gray-300 rounded-full cursor-pointer
+                              transition-all duration-200 ease-in-out
+                              flex items-center justify-center
+                              hover:border-blue-500 group-hover:bg-blue-50
+                              ${todo.completed ? 'bg-blue-600 border-blue-600' : 'bg-white'}"><div class="
+                    transition-all duration-200 ease-in-out
+                    opacity-100 scale-100
+                  "><svg class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div></div><div class="
+                  absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg
+                  opacity-0 pointer-events-none transition-all duration-200 ease-in-out
+                  whitespace-nowrap z-50
+                  group-hover:opacity-100
+                "><div class="relative">완료됨<div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1"><div class="border-4 border-transparent border-t-gray-900"></div></div></div></div></div></div><div class="flex-1 min-w-0 pr-3"><div class="space-y-3"><div><p class="
+                        text-base font-semibold text-gray-900 dark:text-white break-words leading-tight
+                        line-through text-gray-500 dark:text-gray-400
+                      " data-testid="todo-title">백엔드 API 연동 테스트</p></div><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20"><span>📅</span><span>내일</span></span><span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"><span>⚡</span><span>🟡 보통</span></span></div></div></div><div class="flex items-center gap-1 flex-shrink-0 ml-2"><button class="p-2 w-8 h-8 text-gray-400 hover:text-red-600 dark:hover:text-red-400
+                           hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Delete 백엔드 API 연동 테스트" title="할 일 삭제하기">🗑️</button></div></div></div></div></div><div data-testid="todo-item" class="
+        group relative mb-3 last:mb-0
+        
+        
+      "><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><div class="relative group"><input class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded-sm cursor-pointer
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50
+                           opacity-0 absolute" aria-label="Mark React 프로젝트 설정 완료하기 as complete" type="checkbox"><div class="w-5 h-5 border-2 border-gray-300 rounded-full cursor-pointer
+                              transition-all duration-200 ease-in-out
+                              flex items-center justify-center
+                              hover:border-blue-500 group-hover:bg-blue-50
+                              ${todo.completed ? 'bg-blue-600 border-blue-600' : 'bg-white'}"><div class="
+                    transition-all duration-200 ease-in-out
+                    opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100
+                  "><svg class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div></div><div class="
+                  absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg
+                  opacity-0 pointer-events-none transition-all duration-200 ease-in-out
+                  whitespace-nowrap z-50
+                  group-hover:opacity-100
+                "><div class="relative">클릭하여 완료 표시<div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1"><div class="border-4 border-transparent border-t-gray-900"></div></div></div></div></div></div><div class="flex-1 min-w-0 pr-3"><div class="space-y-3"><div><p class="
+                        text-base font-semibold text-gray-900 dark:text-white break-words leading-tight
+                        
+                      " data-testid="todo-title">React 프로젝트 설정 완료하기</p></div><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20"><span>📅</span><span>3일 후</span></span><span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"><span>🔥</span><span>🔴 높음</span></span></div></div></div><div class="flex items-center gap-1 flex-shrink-0 ml-2"><button class="p-2 w-8 h-8 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400
+                             hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Edit React 프로젝트 설정 완료하기" title="내용 수정하기">✍️</button><button class="p-2 w-8 h-8 text-gray-400 hover:text-red-600 dark:hover:text-red-400
+                           hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Delete React 프로젝트 설정 완료하기" title="할 일 삭제하기">🗑️</button></div></div></div></div></div><div data-testid="todo-item" class="
+        group relative mb-3 last:mb-0
+        
+        
+      "><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><div class="relative group"><input class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded-sm cursor-pointer
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50
+                           opacity-0 absolute" aria-label="Mark UI/UX 개선 사항 적용 as complete" type="checkbox"><div class="w-5 h-5 border-2 border-gray-300 rounded-full cursor-pointer
+                              transition-all duration-200 ease-in-out
+                              flex items-center justify-center
+                              hover:border-blue-500 group-hover:bg-blue-50
+                              ${todo.completed ? 'bg-blue-600 border-blue-600' : 'bg-white'}"><div class="
+                    transition-all duration-200 ease-in-out
+                    opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100
+                  "><svg class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div></div><div class="
+                  absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg
+                  opacity-0 pointer-events-none transition-all duration-200 ease-in-out
+                  whitespace-nowrap z-50
+                  group-hover:opacity-100
+                "><div class="relative">클릭하여 완료 표시<div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1"><div class="border-4 border-transparent border-t-gray-900"></div></div></div></div></div></div><div class="flex-1 min-w-0 pr-3"><div class="space-y-3"><div><p class="
+                        text-base font-semibold text-gray-900 dark:text-white break-words leading-tight
+                        
+                      " data-testid="todo-title">UI/UX 개선 사항 적용</p></div><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-900/20"><span>📅</span><span>5일 후</span></span><span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"><span>🔥</span><span>🔴 높음</span></span></div></div></div><div class="flex items-center gap-1 flex-shrink-0 ml-2"><button class="p-2 w-8 h-8 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400
+                             hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Edit UI/UX 개선 사항 적용" title="내용 수정하기">✍️</button><button class="p-2 w-8 h-8 text-gray-400 hover:text-red-600 dark:hover:text-red-400
+                           hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Delete UI/UX 개선 사항 적용" title="할 일 삭제하기">🗑️</button></div></div></div></div></div><div data-testid="todo-item" class="
+        group relative mb-3 last:mb-0
+        
+        
+      "><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><div class="relative group"><input class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded-sm cursor-pointer
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50
+                           opacity-0 absolute" aria-label="Mark 다크 모드 테마 구현 as complete" type="checkbox"><div class="w-5 h-5 border-2 border-gray-300 rounded-full cursor-pointer
+                              transition-all duration-200 ease-in-out
+                              flex items-center justify-center
+                              hover:border-blue-500 group-hover:bg-blue-50
+                              ${todo.completed ? 'bg-blue-600 border-blue-600' : 'bg-white'}"><div class="
+                    transition-all duration-200 ease-in-out
+                    opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100
+                  "><svg class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div></div><div class="
+                  absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg
+                  opacity-0 pointer-events-none transition-all duration-200 ease-in-out
+                  whitespace-nowrap z-50
+                  group-hover:opacity-100
+                "><div class="relative">클릭하여 완료 표시<div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1"><div class="border-4 border-transparent border-t-gray-900"></div></div></div></div></div></div><div class="flex-1 min-w-0 pr-3"><div class="space-y-3"><div><p class="
+                        text-base font-semibold text-gray-900 dark:text-white break-words leading-tight
+                        
+                      " data-testid="todo-title">다크 모드 테마 구현</p></div><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50"><span>📅</span><span>8일 후</span></span><span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400"><span>⚡</span><span>🟡 보통</span></span></div></div></div><div class="flex items-center gap-1 flex-shrink-0 ml-2"><button class="p-2 w-8 h-8 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400
+                             hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Edit 다크 모드 테마 구현" title="내용 수정하기">✍️</button><button class="p-2 w-8 h-8 text-gray-400 hover:text-red-600 dark:hover:text-red-400
+                           hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Delete 다크 모드 테마 구현" title="할 일 삭제하기">🗑️</button></div></div></div></div></div><div data-testid="todo-item" class="
+        group relative mb-3 last:mb-0
+        
+        
+      "><div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-200 border border-gray-100 dark:border-gray-700 overflow-hidden"><div class="p-4"><div class="flex items-center gap-3"><div class="flex-shrink-0"><div class="relative group"><input class="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded-sm cursor-pointer
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50
+                           opacity-0 absolute" aria-label="Mark 반응형 디자인 테스트 as complete" type="checkbox"><div class="w-5 h-5 border-2 border-gray-300 rounded-full cursor-pointer
+                              transition-all duration-200 ease-in-out
+                              flex items-center justify-center
+                              hover:border-blue-500 group-hover:bg-blue-50
+                              ${todo.completed ? 'bg-blue-600 border-blue-600' : 'bg-white'}"><div class="
+                    transition-all duration-200 ease-in-out
+                    opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100
+                  "><svg class="w-3 h-3 text-white" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div></div><div class="
+                  absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg
+                  opacity-0 pointer-events-none transition-all duration-200 ease-in-out
+                  whitespace-nowrap z-50
+                  group-hover:opacity-100
+                "><div class="relative">클릭하여 완료 표시<div class="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1"><div class="border-4 border-transparent border-t-gray-900"></div></div></div></div></div></div><div class="flex-1 min-w-0 pr-3"><div class="space-y-3"><div><p class="
+                        text-base font-semibold text-gray-900 dark:text-white break-words leading-tight
+                        
+                      " data-testid="todo-title">반응형 디자인 테스트</p></div><div class="flex flex-wrap items-center gap-2"><span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-700/50"><span>📅</span><span>13일 후</span></span><span class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"><span>💡</span><span>🟢 낮음</span></span></div></div></div><div class="flex items-center gap-1 flex-shrink-0 ml-2"><button class="p-2 w-8 h-8 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400
+                             hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Edit 반응형 디자인 테스트" title="내용 수정하기">✍️</button><button class="p-2 w-8 h-8 text-gray-400 hover:text-red-600 dark:hover:text-red-400
+                           hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-all duration-200 flex items-center justify-center" aria-label="Delete 반응형 디자인 테스트" title="할 일 삭제하기">🗑️</button></div></div></div></div></div></div></div></div></div></main></div></div></div>
+    <script type="module" src="/src/main.jsx"></script>
+  
+
+</body></html>

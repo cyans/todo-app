@@ -4,22 +4,25 @@
     "conversation_language_name": "한국어"
   },
   "user": {
-    "nickname": "cyans"
+    "nickname": "GOOS"
   },
   "project": {
     "name": "todo",
     "mode": "personal",
-    "locale": "en",
-    "language": "generic",
+    "locale": "ko",
+    "language": "javascript",
     "language_detection": {
-      "detected_language": "generic",
-      "detection_method": "cli_default",
-      "confidence": null,
-      "markers": [],
-      "confirmed_by": null
+      "detected_language": "javascript",
+      "detection_method": "project_analysis",
+      "confidence": "high",
+      "markers": ["react", "express", "node", "mongodb"],
+      "confirmed_by": "project-manager"
     },
     "optimized": true,
-    "last_merge": "2025-10-30T11:30:00+00:00",
-    "backup_source": ".moai-backups/backup/"
+    "last_merge": "2025-11-10T00:00:00+00:00",
+    "backup_source": ".moai-backups/backup/",
+    "status": "documented",
+    "last_documentation_update": "2025-11-10T00:00:00+00:00",
+    "last_sync": "2025-11-10T00:00:00+00:00"
   }
 }

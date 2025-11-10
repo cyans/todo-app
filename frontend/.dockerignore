@@ -1,0 +1,65 @@
+# @CODE:TAG-DEPLOY-DOCKER-001
+# Frontend .dockerignore file
+
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Build artifacts
+dist
+build
+
+# Testing
+coverage
+.nyc_output
+test
+tests
+__tests__
+
+# Development files
+.git
+.gitignore
+README.md
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Logs
+logs
+*.log
+
+# Cache
+.cache
+.parcel-cache
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Temporary files
+tmp
+temp
+
+# Source maps (include in build for debugging, but exclude from final image)
+*.map
+
+# Hot module replacement files
+hot-update.json

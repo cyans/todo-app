@@ -1,0 +1,407 @@
+/* @CODE:TAG-UX-ENHANCED-002 - Micro-interactions and Loading States */
+
+/* Micro-interaction base classes */
+.micro-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  border: 2px solid var(--color-border, #e5e7eb);
+  background: var(--color-background, #ffffff);
+  color: var(--color-text, #374151);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.micro-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary-hover, #2563eb);
+}
+
+.micro-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.micro-button:focus {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.micro-animate {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.micro-animation-active {
+  animation: microPulse 0.3s ease-out;
+}
+
+@keyframes microPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Interaction feedback classes */
+.interaction-success {
+  background-color: var(--color-success, #10b981) !important;
+  color: white !important;
+  border-color: var(--color-success, #10b981) !important;
+}
+
+.interaction-error {
+  background-color: var(--color-error, #ef4444) !important;
+  color: white !important;
+  border-color: var(--color-error, #ef4444) !important;
+}
+
+.interaction-warning {
+  background-color: var(--color-warning, #f59e0b) !important;
+  color: white !important;
+  border-color: var(--color-warning, #f59e0b) !important;
+}
+
+.interaction-info {
+  background-color: var(--color-info, #3b82f6) !important;
+  color: white !important;
+  border-color: var(--color-info, #3b82f6) !important;
+}
+
+/* Hover interactions */
+.micro-hover-area {
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.hover-active {
+  transform: scale(1.02);
+  background-color: var(--color-surface-hover, #f9fafb);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Swipe interactions */
+.micro-swipe-area {
+  position: relative;
+  overflow: hidden;
+  touch-action: pan-y;
+}
+
+.swipe-detected {
+  animation: swipeFeedback 0.3s ease-out;
+}
+
+@keyframes swipeFeedback {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Loading states */
+.micro-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.micro-loading.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.loading-with-spinner::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--color-primary, #3b82f6);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Skeleton loading */
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    var(--color-background-tertiary, #f3f4f6) 25%,
+    var(--color-background-secondary, #f9fafb) 50%,
+    var(--color-background-tertiary, #f3f4f6) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton 1.5s infinite;
+}
+
+@keyframes skeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Progress loading */
+.progress-loading {
+  position: relative;
+}
+
+.progress-loading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--color-primary, #3b82f6);
+  animation: progress 2s ease-in-out infinite;
+}
+
+@keyframes progress {
+  0% { width: 0; left: 0; }
+  50% { width: 100%; left: 0; }
+  100% { width: 0; left: 100%; }
+}
+
+/* Feedback area */
+.micro-feedback {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transform: translateX(400px);
+  transition: transform 0.3s ease;
+  max-width: 300px;
+}
+
+.micro-feedback.show {
+  transform: translateX(0);
+}
+
+.micro-feedback.success {
+  background-color: var(--color-success, #10b981);
+  color: white;
+}
+
+.micro-feedback.error {
+  background-color: var(--color-error, #ef4444);
+  color: white;
+}
+
+.micro-feedback.warning {
+  background-color: var(--color-warning, #f59e0b);
+  color: white;
+}
+
+.micro-feedback.info {
+  background-color: var(--color-info, #3b82f6);
+  color: white;
+}
+
+/* Keyboard interactions */
+.keyboard-focused {
+  outline: 2px solid var(--color-primary, #3b82f6) !important;
+  outline-offset: 2px !important;
+}
+
+.keyboard-activated {
+  transform: scale(0.95) !important;
+  background-color: var(--color-primary-light, #dbeafe) !important;
+}
+
+/* Touch interactions */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* Ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Micro-animations for different states */
+.micro-bounce {
+  animation: microBounce 0.5s ease-out;
+}
+
+@keyframes microBounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -1px, 0);
+  }
+}
+
+.micro-shake {
+  animation: microShake 0.5s ease-in-out;
+}
+
+@keyframes microShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+  20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+
+.micro-pulse {
+  animation: microPulse 1s ease-in-out infinite;
+}
+
+@keyframes microPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Accessibility enhancements */
+.micro-feedback[aria-live="polite"] {
+  /* Screen reader announcement */
+}
+
+.micro-feedback[aria-atomic="true"] {
+  /* Announce entire content */
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .micro-button,
+  .micro-hover-area,
+  .micro-swipe-area,
+  .micro-animate {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .micro-animation-active,
+  .swipe-detected,
+  .micro-bounce,
+  .micro-shake,
+  .micro-pulse {
+    animation: none !important;
+  }
+
+  .loading-with-spinner::after {
+    animation: none !important;
+  }
+
+  .skeleton-loading {
+    animation: none !important;
+    background: var(--color-background-tertiary, #f3f4f6);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .micro-button {
+    border-width: 3px;
+  }
+
+  .keyboard-focused {
+    outline-width: 3px;
+  }
+
+  .micro-feedback {
+    border: 2px solid;
+  }
+}
+
+/* Dark mode adaptations */
+@media (prefers-color-scheme: dark) {
+  .micro-button {
+    border-color: var(--color-border, #374151);
+    background: var(--color-background, #1f2937);
+    color: var(--color-text, #f9fafb);
+  }
+
+  .skeleton-loading {
+    background: linear-gradient(
+      90deg,
+      var(--color-background-tertiary, #374151) 25%,
+      var(--color-background-secondary, #1f2937) 50%,
+      var(--color-background-tertiary, #374151) 75%
+    );
+  }
+}
+
+/* Performance optimizations */
+.micro-button,
+.micro-hover-area,
+.micro-swipe-area {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.micro-button:active,
+.micro-hover-area:active,
+.micro-swipe-area:active {
+  will-change: auto;
+}

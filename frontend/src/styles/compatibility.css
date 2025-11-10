@@ -1,0 +1,596 @@
+/* @CODE:TAG-UI-COMPATIBILITY-001 - CSS compatibility with vendor prefixes and fallbacks */
+
+/* ===== Vendor Prefix Helpers ===== */
+/* This file provides fallbacks and vendor prefixes for older browsers */
+
+/* ===== CSS Custom Properties Fallbacks ===== */
+:root {
+  /* Fallback values for browsers that don't support CSS custom properties */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  --touch-target-min: 44px;
+}
+
+/* Fallbacks for browsers without custom property support */
+.no-cssvars .container {
+  max-width: 1200px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-cssvars .touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 16px;
+}
+
+.no-cssvars .responsive-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ===== Flexbox with Vendor Prefixes ===== */
+.flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex--col {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex--row {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.flex--wrap {
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flex--nowrap {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+.flex--center {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.flex--start {
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.flex--end {
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.flex--between {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.flex--around {
+  -webkit-box-pack: distribute;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.flex--items-center {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flex--items-start {
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.flex--items-end {
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+
+.flex--items-stretch {
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+/* ===== Grid with Vendor Prefixes ===== */
+.grid {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: -ms-grid;
+  display: grid;
+  gap: 16px;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+}
+
+.grid--cols-2 {
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--cols-3 {
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--cols-4 {
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Fallback for older browsers without grid support */
+.no-grid .grid,
+.no-grid .grid--cols-2,
+.no-grid .grid--cols-3,
+.no-grid .grid--cols-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.no-grid .grid > *,
+.no-grid .grid--cols-2 > *,
+.no-grid .grid--cols-3 > *,
+.no-grid .grid--cols-4 > * {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 300px;
+  -ms-flex: 1 1 300px;
+  flex: 1 1 300px;
+  margin: 8px;
+}
+
+/* ===== Transforms and Animations ===== */
+.transform {
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.gpu-accelerated {
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+}
+
+.transition {
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.transition-fast {
+  -webkit-transition: all 0.15s ease;
+  -moz-transition: all 0.15s ease;
+  -o-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+}
+
+.transition-slow {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* ===== Border Radius with Vendor Prefixes ===== */
+.rounded {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.rounded-md {
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.rounded-lg {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+}
+
+.rounded-xl {
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.rounded-full {
+  -webkit-border-radius: 9999px;
+  -moz-border-radius: 9999px;
+  border-radius: 9999px;
+}
+
+/* ===== Box Shadow with Vendor Prefixes ===== */
+.shadow-sm {
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-md {
+  -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-lg {
+  -webkit-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Opacity with Vendor Prefixes ===== */
+.opacity-0 {
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+}
+
+.opacity-50 {
+  -webkit-opacity: 0.5;
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+}
+
+.opacity-100 {
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+/* ===== Background Gradient with Vendor Prefixes ===== */
+.gradient-primary {
+  background: #667eea;
+  background: -webkit-gradient(linear, left top, right bottom, from(#667eea), to(#764ba2));
+  background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: -o-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#667eea', endColorstr='#764ba2', GradientType=1 );
+}
+
+/* ===== Placeholder Styling ===== */
+.placeholder {
+  color: #9ca3af;
+}
+
+.placeholder::-webkit-input-placeholder {
+  color: #9ca3af;
+}
+
+.placeholder::-moz-placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.placeholder:-ms-input-placeholder {
+  color: #9ca3af;
+}
+
+.placeholder::-ms-input-placeholder {
+  color: #9ca3af;
+}
+
+/* ===== User Select with Vendor Prefixes ===== */
+.select-none {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.select-text {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+.select-all {
+  -webkit-user-select: all;
+  -moz-user-select: all;
+  -ms-user-select: all;
+  user-select: all;
+}
+
+/* ===== Pointer Events with Vendor Prefixes ===== */
+.pointer-events-none {
+  -webkit-pointer-events: none;
+  -moz-pointer-events: none;
+  pointer-events: none;
+}
+
+.pointer-events-auto {
+  -webkit-pointer-events: auto;
+  -moz-pointer-events: auto;
+  pointer-events: auto;
+}
+
+/* ===== Backface Visibility ===== */
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ===== Perspective ===== */
+.perspective-1000 {
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+}
+
+/* ===== Transform Style ===== */
+.transform-style-3d {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* ===== Filter Effects ===== */
+.blur-sm {
+  -webkit-filter: blur(4px);
+  -moz-filter: blur(4px);
+  -ms-filter: blur(4px);
+  filter: blur(4px);
+}
+
+.blur-md {
+  -webkit-filter: blur(8px);
+  -moz-filter: blur(8px);
+  -ms-filter: blur(8px);
+  filter: blur(8px);
+}
+
+.blur-lg {
+  -webkit-filter: blur(16px);
+  -moz-filter: blur(16px);
+  -ms-filter: blur(16px);
+  filter: blur(16px);
+}
+
+/* ===== Aspect Ratio Fallbacks ===== */
+.aspect-square {
+  position: relative;
+}
+
+.aspect-square::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.aspect-square > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.aspect-video {
+  position: relative;
+}
+
+.aspect-video::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+
+.aspect-video > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* ===== Object Fit Fallbacks ===== */
+.object-cover {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
+
+.object-contain {
+  object-fit: contain;
+  font-family: 'object-fit: contain;';
+}
+
+.no-objectfit .object-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* ===== CSS Grid Fallbacks for IE11 ===== */
+@supports not (display: grid) {
+  .grid {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+
+  .grid--cols-2 {
+    -ms-grid-columns: 1fr 1fr;
+  }
+
+  .grid--cols-3 {
+    -ms-grid-columns: 1fr 1fr 1fr;
+  }
+
+  .grid--cols-4 {
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .grid > * {
+    -ms-flex: 1 1 300px;
+    flex: 1 1 300px;
+    margin: 8px;
+  }
+}
+
+/* ===== Progressive Enhancement ===== */
+/* Base styles for all browsers */
+.progressive-enhancement {
+  /* Basic styles that work everywhere */
+  color: #374151;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+/* Enhanced styles for modern browsers */
+@supports (display: grid) or (display: flex) {
+  .progressive-enhancement {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+}
+
+/* ===== Media Query Fallbacks ===== */
+/* Use min-width instead of min-device-width for better compatibility */
+@media (min-width: 640px) {
+  .responsive-enhanced {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-enhanced {
+    padding: 16px 32px;
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-enhanced {
+    padding: 20px 40px;
+    font-size: 20px;
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    page-break-after: always;
+  }
+
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}

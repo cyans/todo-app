@@ -1,0 +1,106 @@
+/* TodoItem Checkbox Optimization Recommendations */
+
+/* CURRENT IMPLEMENTATION */
+.checkbox-current {
+  /* Size: w-8 h-8 = 32px × 32px */
+  width: 32px;
+  height: 32px;
+  
+  /* Border: 4px thick with shadow */
+  border: 4px solid #d1d5db;
+  box-shadow: 0 0 0 1px #d1d5db;
+  
+  /* Spacing: gap-4 = 16px */
+  margin-right: 16px;
+  
+  /* Total horizontal space: 32px + 16px = 48px */
+}
+
+/* RECOMMENDED OPTIMIZATION */
+.checkbox-optimized {
+  /* Size: w-6 h-6 = 24px × 24px (25% smaller) */
+  width: 24px;
+  height: 24px;
+  
+  /* Border: 2px thick (50% reduction in visual weight) */
+  border: 2px solid #d1d5db;
+  box-shadow: 0 0 0 1px #d1d5db;
+  
+  /* Spacing: gap-3 = 12px (25% reduction) */
+  margin-right: 12px;
+  
+  /* Total horizontal space: 24px + 12px = 36px (25% savings) */
+}
+
+/* TAILWIND IMPLEMENTATION */
+/*
+Replace in TodoItem.jsx:
+
+CURRENT:
+  className="w-8 h-8 cursor-pointer..."
+  gap-4 (in parent container)
+
+OPTIMIZED:
+  className="w-6 h-6 cursor-pointer..."
+  gap-3 (in parent container)
+  
+Also update:
+  borderWidth: '2px' (instead of '4px')
+  SVG size: w-2.5 h-2.5 (instead of w-3 h-3)
+*/
+
+/* VISUAL COMPARISON */
+.space-comparison {
+  font-family: monospace;
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.current-space {
+  background: #fee2e2;
+  padding: 4px;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+.optimized-space {
+  background: #dcfce7;
+  padding: 4px;
+  border-radius: 4px;
+  margin: 2px 0;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 640px) {
+  .checkbox-mobile {
+    /* Even smaller for mobile: w-5 h-5 = 20px */
+    width: 20px;
+    height: 20px;
+    
+    /* Tighter spacing: gap-2 = 8px */
+    margin-right: 8px;
+    
+    /* Total space: 20px + 8px = 28px (42% savings from original) */
+  }
+}
+
+/* ACCESSIBILITY CONSIDERATIONS */
+.checkbox-accessible {
+  /* Minimum touch target: 44px × 44px */
+  min-width: 44px;
+  min-height: 44px;
+  
+  /* Visual checkbox can be smaller, but touch area larger */
+  position: relative;
+}
+
+.checkbox-accessible::before {
+  /* Invisible touch area */
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: transparent;
+}

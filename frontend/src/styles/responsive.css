@@ -1,0 +1,222 @@
+/* @CODE:TAG-UI-RESPONSIVE-001 - Mobile-first responsive design system */
+
+/* ===== CSS Custom Properties for Design System ===== */
+:root {
+  /* Breakpoint variables */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+
+  /* Typography scale */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+
+  /* Line heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+  --leading-loose: 1.7;
+
+  /* Touch targets */
+  --touch-target-min: 44px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.3s ease;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Mobile-First Base Styles ===== */
+.mobile-first-base {
+  /* Mobile-first styles applied by default */
+  padding: var(--space-md);
+  font-size: var(--font-size-base);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== Responsive Breakpoint System ===== */
+/* Breakpoint definitions using CSS variables:
+   xs: 0px (default, mobile-first)
+   sm: 640px (tablet)
+   md: 768px (small desktop)
+   lg: 1024px (desktop)
+   xl: 1280px (large desktop)
+*/
+
+/* ===== Tablet Enhancements (640px and up) ===== */
+@media (min-width: 640px) {
+  .tablet-enhancement {
+    padding: var(--space-lg);
+    font-size: var(--font-size-lg);
+  }
+
+  .container {
+    max-width: var(--breakpoint-sm);
+  }
+
+  .responsive-text {
+    font-size: var(--font-size-lg);
+    line-height: var(--leading-relaxed);
+  }
+}
+
+/* ===== Small Desktop Enhancements (768px and up) ===== */
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--breakpoint-md);
+  }
+}
+
+/* ===== Desktop Enhancements (1024px and up) ===== */
+@media (min-width: 1024px) {
+  .desktop-enhancement {
+    padding: var(--space-xl);
+    font-size: var(--font-size-xl);
+  }
+
+  .container {
+    max-width: var(--breakpoint-lg);
+  }
+
+  .responsive-text {
+    font-size: var(--font-size-xl);
+    line-height: var(--leading-loose);
+  }
+}
+
+/* ===== Large Desktop Enhancements (1280px and up) ===== */
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--breakpoint-xl);
+  }
+}
+
+/* ===== Touch-Friendly Interactions ===== */
+.touch-target {
+  /* WCAG 2.1 AA compliant touch targets */
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  padding: var(--space-sm) var(--space-md);
+
+  /* Enhanced touch feedback */
+  position: relative;
+  transition: transform var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+
+.touch-target:hover,
+.touch-target:focus {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.touch-target:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== Responsive Typography Scale ===== */
+.responsive-text {
+  font-size: var(--font-size-base);
+  line-height: var(--leading-normal);
+  font-weight: 400;
+}
+
+/* ===== Fluid Container System ===== */
+.container {
+  width: 100%;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== Mobile-First Grid System ===== */
+.grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr; /* Single column by default (mobile-first) */
+}
+
+@media (min-width: 640px) {
+  .grid--cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid--cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .grid--cols-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ===== Responsive Spacing System ===== */
+.section {
+  padding: var(--space-xl) 0;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+}
+
+/* ===== Accessibility & Performance Optimizations ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for keyboard navigation */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

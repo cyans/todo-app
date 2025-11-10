@@ -1,0 +1,51 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Full-stack To-Do Application with Production Deployment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --detectOpenHandles",
+    "test:watch": "jest --watch --detectOpenHandles",
+    "test:coverage": "jest --coverage --detectOpenHandles",
+    "test:docker": "jest tests/docker.test.js --detectOpenHandles",
+    "test:deploy": "jest tests/deployment.test.js --detectOpenHandles"
+  },
+  "keywords": [
+    "todo",
+    "node",
+    "react",
+    "express",
+    "mongodb",
+    "docker"
+  ],
+  "author": "cyans",
+  "license": "ISC",
+  "dependencies": {
+    "prop-types": "^15.8.1",
+    "puppeteer": "^24.29.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.2.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!node_modules/**",
+      "!tests/**",
+      "!coverage/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 85,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
+  }
+}
