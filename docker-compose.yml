@@ -1,5 +1,5 @@
-# @CODE:TAG-DEPLOY-DOCKER-001
-# Development Docker Compose configuration
+# @CODE:UI-UX-DEPLOY-005:DEPLOY-INFRA
+# Production-ready Docker Compose configuration
 
 version: '3.8'
 

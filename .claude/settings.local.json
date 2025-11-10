@@ -34,7 +34,11 @@
       "Bash(timeout:*)",
       "Bash(copy:*)",
       "Bash(netstat:*)",
-      "Skill(moai-alfred-interactive-questions)"
+      "Skill(moai-alfred-interactive-questions)",
+      "Bash(gh:*)",
+      "Bash(cat:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []

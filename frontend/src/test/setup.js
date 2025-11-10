@@ -1,5 +1,6 @@
 // Test setup for Vitest
 import { JSDOM } from 'jsdom';
+import '@testing-library/jest-dom';
 
 // Setup DOM environment
 const dom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>', {
