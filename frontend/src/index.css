@@ -175,7 +175,7 @@
 
   /* Loading Animation */
   .loading-spinner {
-    @apply w-6 h-6 border-2 border-gray-200 border-t-primary-500 rounded-full;
+    @apply w-6 h-6 border-2 border-gray-200 border-t-blue-500 rounded-full;
     animation: spin 1s linear infinite;
   }
 
@@ -220,5 +220,197 @@
     background: linear-gradient(135deg, var(--color-success-100), var(--color-success-200));
     color: var(--color-success-700);
     border-color: var(--color-success-300);
+  }
+
+  /* Slide In Animation for Todo Items */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Enhanced Loading States */
+  .loading-skeleton {
+    @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+  }
+
+  .loading-skeleton-text {
+    @apply h-4 mb-2;
+  }
+
+  .loading-skeleton-title {
+    @apply h-6 mb-3 w-3/4;
+  }
+
+  /* Progress Bar Animations */
+  .progress-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .progress-shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Enhanced Empty State Animations */
+  .empty-state-icon-bounce {
+    animation: gentle-bounce 3s ease-in-out infinite;
+  }
+
+  @keyframes gentle-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .empty-state-pulse-bg {
+    animation: gentle-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% {
+      opacity: 0.1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+  }
+
+  /* Hover Effects for Interactive Elements */
+  .stats-card-hover {
+    transition: var(--transition-all), var(--transition-transform);
+    transition-duration: var(--duration-200);
+  }
+
+  .stats-card-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Responsive Improvements */
+  @media (max-width: 640px) {
+    .progress-overview-mobile {
+      padding: var(--space-4) !important;
+    }
+
+    .progress-stats-mobile {
+      grid-template-columns: 1fr !important;
+      gap: var(--space-3) !important;
+    }
+
+    .empty-state-mobile {
+      padding: var(--space-6) var(--space-4) !important;
+    }
+
+    .section-header-mobile {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: var(--space-3) !important;
+    }
+
+    .todo-item-mobile {
+      padding: var(--space-4) !important;
+    }
+  }
+
+  /* Touch-Friendly Improvements for Mobile */
+  @media (hover: none) and (pointer: coarse) {
+    .btn-primary,
+    .todo-card-hover,
+    .stats-card-hover {
+      transform: none !important;
+    }
+
+    .btn-primary:active,
+    .todo-card-hover:active {
+      transform: scale(0.98) !important;
+    }
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .card-modern {
+      border-width: 2px;
+    }
+
+    .btn-primary {
+      border: 2px solid var(--color-primary-600);
+    }
+
+    .priority-badge {
+      border-width: 2px;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .progress-shimmer::after {
+      animation: none;
+    }
+
+    .empty-state-icon-bounce {
+      animation: none;
+    }
+
+    .empty-state-pulse-bg {
+      animation: none;
+    }
+  }
+
+  /* Print Styles */
+  @media print {
+    .btn-primary,
+    .todo-card-hover:hover,
+    .loading-spinner {
+      display: none !important;
+    }
+
+    .card-modern {
+      box-shadow: none !important;
+      border: 1px solid var(--color-gray-300) !important;
+      break-inside: avoid;
+    }
+
+    .progress-overview {
+      background: white !important;
+      color: black !important;
+    }
   }
 }
