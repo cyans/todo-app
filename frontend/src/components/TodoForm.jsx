@@ -5,11 +5,8 @@ function TodoForm({ onAddTodo }) {
   const [text, setText] = useState('')
   const [priority, setPriority] = useState('medium')
   const [description, setDescription] = useState('')
+  const [dueDate, setDueDate] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isFocused, setIsFocused] = useState({
-    text: false,
-    description: false
-  })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,14 +20,15 @@ function TodoForm({ onAddTodo }) {
       await onAddTodo({
         text: text.trim(),
         priority,
-        description: description.trim()
+        description: description.trim(),
+        dueDate: dueDate || null
       })
 
       // Reset form
       setText('')
       setDescription('')
+      setDueDate('')
       setPriority('medium')
-      setIsFocused({ text: false, description: false })
     } catch (error) {
       console.error('Error adding todo:', error)
     } finally {
@@ -38,57 +36,44 @@ function TodoForm({ onAddTodo }) {
     }
   }
 
-  const handleInputChange = (field, value) => {
-    switch (field) {
-      case 'text':
-        setText(value)
-        break
-      case 'description':
-        setDescription(value)
-        break
-      default:
-        break
-    }
-  }
-
-  const handleFocus = (field) => {
-    setIsFocused(prev => ({ ...prev, [field]: true }))
-  }
-
-  const handleBlur = (field) => {
-    const value = field === 'text' ? text : description
-    if (!value.trim()) {
-      setIsFocused(prev => ({ ...prev, [field]: false }))
-    }
-  }
-
-  const isTextActive = isFocused.text || text.trim()
-  const isDescriptionActive = isFocused.description || description.trim()
-
+  
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Main Task Input */}
       <div className="relative">
-        <label
-          htmlFor="todo-text"
-          className={`floating-label ${isTextActive ? 'active' : ''}`}
-        >
-          What needs to be done?
+        <label htmlFor="todo-text" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Task Title
         </label>
         <input
           id="todo-text"
           type="text"
           value={text}
-          onChange={(e) => handleInputChange('text', e.target.value)}
-          onFocus={() => handleFocus('text')}
-          onBlur={() => handleBlur('text')}
-          className="input-modern pt-6"
-          placeholder=""
+          onChange={(e) => setText(e.target.value)}
+          className="input-modern"
+          placeholder="What needs to be done?"
           disabled={isSubmitting}
           autoComplete="off"
         />
       </div>
 
+      {/* Second Row: Description and Priority */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="relative">
+          <label htmlFor="todo-description" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            Description (optional)
+          </label>
+          <input
+            id="todo-description"
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="input-modern"
+            placeholder="Add more details about this task"
+            disabled={isSubmitting}
+            autoComplete="off"
+          />
+        </div>
+
         <div className="relative">
           <label htmlFor="todo-priority" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Priority Level
@@ -112,41 +97,47 @@ function TodoForm({ onAddTodo }) {
             </div>
           </div>
         </div>
-
-        <div className="relative">
-          <label
-            htmlFor="todo-description"
-            className={`floating-label ${isDescriptionActive ? 'active' : ''}`}
-          >
-            Description (optional)
-          </label>
-          <input
-            id="todo-description"
-            type="text"
-            value={description}
-            onChange={(e) => handleInputChange('description', e.target.value)}
-            onFocus={() => handleFocus('description')}
-            onBlur={() => handleBlur('description')}
-            className="input-modern pt-6"
-            placeholder=""
-            disabled={isSubmitting}
-            autoComplete="off"
-          />
-        </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      {/* Third Row: Due Date */}
+      <div className="relative">
+        <label htmlFor="todo-dueDate" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          Due Date (optional)
+        </label>
+        <input
+          id="todo-dueDate"
+          type="date"
+          value={dueDate}
+          onChange={(e) => setDueDate(e.target.value)}
+          className="input-modern"
+          min={new Date().toISOString().split('T')[0]}
+          disabled={isSubmitting}
+        />
+      </div>
+
+      {/* Action Row: Priority Indicator and Submit Button */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
         <div className="text-sm text-gray-500">
           {text.trim() && (
-            <span className="flex items-center">
-              <span className="inline-block w-2 h-2 rounded-full mr-2 priority-badge"
-                    style={{
-                      background: priority === 'high' ? 'var(--color-error-500)' :
-                                  priority === 'medium' ? 'var(--color-warning-500)' :
-                                  'var(--color-success-500)'
-                    }}></span>
-              {priority.charAt(0).toUpperCase() + priority.slice(1)} priority
-            </span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <span className="flex items-center">
+                <span className="inline-block w-2 h-2 rounded-full mr-2 priority-badge"
+                      style={{
+                        background: priority === 'high' ? 'var(--color-error-500)' :
+                                    priority === 'medium' ? 'var(--color-warning-500)' :
+                                    'var(--color-success-500)'
+                      }}></span>
+                {priority.charAt(0).toUpperCase() + priority.slice(1)} priority
+              </span>
+              {dueDate && (
+                <span className="flex items-center text-blue-600 dark:text-blue-400">
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {new Date(dueDate).toLocaleDateString()}
+                </span>
+              )}
+            </div>
           )}
         </div>
 
