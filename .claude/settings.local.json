@@ -26,7 +26,9 @@
       "mcp__context7__resolve-library-id",
       "Skill(moai-alfred-ask-user-questions)",
       "mcp__context7__get-library-docs",
-      "Bash(gh label create:*)"
+      "Bash(gh label create:*)",
+      "Bash(PYTHONPATH=src python -m pytest:*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []
