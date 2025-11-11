@@ -1,14 +1,224 @@
+/* Modern Design Tokens - Import First */
+@import './styles/design-tokens.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
+/* Custom styles with modern design tokens */
 @layer base {
   body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    font-family: var(--font-family-sans);
+    background: linear-gradient(135deg, var(--color-gray-25) 0%, var(--color-gray-50) 100%);
+    color: var(--color-gray-900);
+    line-height: var(--line-height-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-800) 100%);
+      color: var(--color-gray-100);
+    }
   }
 }
 
 @layer components {
-  /* Custom component styles will go here */
+  /* Modern Button Components */
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-medium text-white transition-all duration-200 transform hover:scale-105 active:scale-95;
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+  }
+
+  .btn-primary:focus {
+    outline: none;
+    box-shadow: var(--input-focus-ring), 0 4px 12px rgba(59, 130, 246, 0.25);
+  }
+
+  /* Modern Input Components */
+  .input-modern {
+    @apply w-full px-4 py-3 rounded-lg border transition-all duration-200;
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--color-gray-300);
+    color: var(--color-gray-900);
+    backdrop-filter: blur(8px);
+  }
+
+  .input-modern:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: var(--input-focus-ring);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .input-modern::placeholder {
+    color: var(--color-gray-400);
+  }
+
+  /* Modern Card Component */
+  .card-modern {
+    @apply rounded-xl shadow-md transition-all duration-200;
+    background: var(--card-background);
+    backdrop-filter: var(--card-backdrop-filter);
+    border: 1px solid var(--color-gray-200);
+  }
+
+  .card-modern:hover {
+    transform: var(--button-hover-lift);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Todo Priority Stripes */
+  .priority-high {
+    background: linear-gradient(180deg, var(--color-error-500), var(--color-error-600));
+  }
+
+  .priority-medium {
+    background: linear-gradient(180deg, var(--color-warning-500), var(--color-warning-600));
+  }
+
+  .priority-low {
+    background: linear-gradient(180deg, var(--color-success-500), var(--color-success-600));
+  }
+
+  /* Floating Label */
+  .floating-label {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: var(--color-gray-400);
+    font-size: var(--font-size-base);
+    pointer-events: none;
+    transition: var(--transition-all);
+    transition-duration: var(--duration-200);
+  }
+
+  .floating-label.active {
+    top: -0.5rem;
+    left: 0.75rem;
+    font-size: var(--font-size-sm);
+    color: var(--color-primary-500);
+    background: white;
+    padding: 0 0.25rem;
+  }
+
+  /* Modern Checkbox */
+  .checkbox-modern {
+    @apply w-5 h-5 rounded border-2 transition-all duration-200;
+    border-color: var(--color-gray-300);
+    position: relative;
+    cursor: pointer;
+  }
+
+  .checkbox-modern:checked {
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+    border-color: var(--color-primary-500);
+  }
+
+  .checkbox-modern:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  /* Filter Pills */
+  .filter-pill {
+    @apply px-4 py-2 rounded-full font-medium transition-all duration-200 cursor-pointer;
+    background: var(--color-gray-100);
+    color: var(--color-gray-600);
+    border: 2px solid transparent;
+  }
+
+  .filter-pill:hover {
+    background: var(--color-gray-200);
+    transform: translateY(-1px);
+  }
+
+  .filter-pill.active {
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+    color: white;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+  }
+
+  /* Empty State */
+  .empty-state {
+    @apply flex flex-col items-center justify-center py-16;
+    color: var(--color-gray-400);
+  }
+
+  .empty-state-icon {
+    @apply mb-4;
+    font-size: 4rem;
+    opacity: 0.3;
+  }
+
+  .empty-state-title {
+    @apply text-xl font-semibold mb-2;
+    color: var(--color-gray-600);
+  }
+
+  .empty-state-description {
+    @apply text-center max-w-md;
+    color: var(--color-gray-400);
+  }
+
+  /* Loading Animation */
+  .loading-spinner {
+    @apply w-6 h-6 border-2 border-gray-200 border-t-primary-500 rounded-full;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Micro-interactions */
+  .todo-complete {
+    transition: var(--transition-all);
+    transition-duration: var(--duration-300);
+  }
+
+  .todo-complete.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+    color: var(--color-gray-400);
+  }
+
+  /* Priority Badge */
+  .priority-badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+    background: linear-gradient(135deg, var(--color-gray-100), var(--color-gray-200));
+    color: var(--color-gray-700);
+    border: 1px solid var(--color-gray-300);
+  }
+
+  .priority-badge.high {
+    background: linear-gradient(135deg, var(--color-error-100), var(--color-error-200));
+    color: var(--color-error-700);
+    border-color: var(--color-error-300);
+  }
+
+  .priority-badge.medium {
+    background: linear-gradient(135deg, var(--color-warning-100), var(--color-warning-200));
+    color: var(--color-warning-700);
+    border-color: var(--color-warning-300);
+  }
+
+  .priority-badge.low {
+    background: linear-gradient(135deg, var(--color-success-100), var(--color-success-200));
+    color: var(--color-success-700);
+    border-color: var(--color-success-300);
+  }
 }
