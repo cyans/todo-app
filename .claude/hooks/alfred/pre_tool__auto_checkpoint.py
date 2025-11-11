@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# @CODE:HOOKS-CLARITY-001 | SPEC: Individual hook files for better UX
+# @CODE:HOOKS-CLARITY-CKPT | SPEC: Individual hook files for better UX
 """PreToolUse Hook: Automatic Safety Checkpoint Creation
 
 Claude Code Event: PreToolUse
@@ -26,18 +26,9 @@ SHARED_DIR = HOOKS_DIR / "shared"
 if str(SHARED_DIR) not in sys.path:
     sys.path.insert(0, str(SHARED_DIR))
 
-from core.timeout import setup_signal_timeout
-from handlers import handle_pre_tool_use
-
-
-class HookTimeoutError(Exception):
-    """Hook execution timeout exception"""
-    pass
-
-
-def _timeout_handler():
-    """Timeout handler for cross-platform timeout"""
-    raise HookTimeoutError("Hook execution exceeded 5-second timeout")
+from handlers import handle_pre_tool_use  # noqa: E402
+from utils.timeout import CrossPlatformTimeout  # noqa: E402
+from utils.timeout import TimeoutError as PlatformTimeoutError  # noqa: E402
 
 
 def main() -> None:
@@ -53,8 +44,9 @@ def main() -> None:
         0: Success (checkpoint created or not needed)
         1: Error (timeout, JSON parse failure, handler exception)
     """
-    # Set 5-second timeout (Windows-compatible)
-    cancel_timeout = setup_signal_timeout(5, _timeout_handler)
+    # Set 5-second timeout
+    timeout = CrossPlatformTimeout(5)
+    timeout.start()
 
     try:
         # Read JSON payload from stdin
@@ -68,11 +60,11 @@ def main() -> None:
         print(json.dumps(result.to_dict()))
         sys.exit(0)
 
-    except HookTimeoutError:
+    except PlatformTimeoutError:
         # Timeout - return minimal valid response (allow operation to continue)
         timeout_response: dict[str, Any] = {
             "continue": True,
-            "systemMessage": "⚠️ Checkpoint creation timeout - operation proceeding without checkpoint"
+            "systemMessage": "⚠️ Checkpoint creation timeout - operation proceeding without checkpoint",
         }
         print(json.dumps(timeout_response))
         print("PreToolUse hook timeout after 5 seconds", file=sys.stderr)
@@ -82,7 +74,7 @@ def main() -> None:
         # JSON parse error - allow operation to continue
         error_response: dict[str, Any] = {
             "continue": True,
-            "hookSpecificOutput": {"error": f"JSON parse error: {e}"}
+            "hookSpecificOutput": {"error": f"JSON parse error: {e}"},
         }
         print(json.dumps(error_response))
         print(f"PreToolUse JSON parse error: {e}", file=sys.stderr)
@@ -92,16 +84,15 @@ def main() -> None:
         # Unexpected error - allow operation to continue
         error_response: dict[str, Any] = {
             "continue": True,
-            "hookSpecificOutput": {"error": f"PreToolUse error: {e}"}
+            "hookSpecificOutput": {"error": f"PreToolUse error: {e}"},
         }
         print(json.dumps(error_response))
         print(f"PreToolUse unexpected error: {e}", file=sys.stderr)
         sys.exit(1)
 
     finally:
-        # Always cancel timeout
-        if cancel_timeout:
-            cancel_timeout()
+        # Always cancel alarm
+        timeout.cancel()
 
 
 if __name__ == "__main__":

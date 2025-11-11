@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# @CODE:HOOKS-CLARITY-001 | SPEC: Individual hook files for better UX
+# @CODE:HOOKS-CLARITY-DOCS | SPEC: Individual hook files for better UX
 """UserPromptSubmit Hook: Just-In-Time Document Loading
 
 Claude Code Event: UserPromptSubmit
@@ -20,18 +20,9 @@ SHARED_DIR = HOOKS_DIR / "shared"
 if str(SHARED_DIR) not in sys.path:
     sys.path.insert(0, str(SHARED_DIR))
 
-from core.timeout import setup_signal_timeout
-from handlers import handle_user_prompt_submit
-
-
-class HookTimeoutError(Exception):
-    """Hook execution timeout exception"""
-    pass
-
-
-def _timeout_handler():
-    """Timeout handler for cross-platform timeout"""
-    raise HookTimeoutError("Hook execution exceeded 5-second timeout")
+from handlers import handle_user_prompt_submit  # noqa: E402
+from utils.timeout import CrossPlatformTimeout  # noqa: E402
+from utils.timeout import TimeoutError as PlatformTimeoutError  # noqa: E402
 
 
 def main() -> None:
@@ -56,8 +47,9 @@ def main() -> None:
         }
     }
     """
-    # Set 5-second timeout (Windows-compatible)
-    cancel_timeout = setup_signal_timeout(5, _timeout_handler)
+    # Set 5-second timeout
+    timeout = CrossPlatformTimeout(5)
+    timeout.start()
 
     try:
         # Read JSON payload from stdin
@@ -71,14 +63,14 @@ def main() -> None:
         print(json.dumps(result.to_user_prompt_submit_dict()))
         sys.exit(0)
 
-    except HookTimeoutError:
+    except PlatformTimeoutError:
         # Timeout - return minimal valid response
         timeout_response: dict[str, Any] = {
             "continue": True,
             "hookSpecificOutput": {
                 "hookEventName": "UserPromptSubmit",
-                "additionalContext": "⚠️ JIT context timeout - continuing without suggestions"
-            }
+                "additionalContext": "⚠️ JIT context timeout - continuing without suggestions",
+            },
         }
         print(json.dumps(timeout_response))
         print("UserPromptSubmit hook timeout after 5 seconds", file=sys.stderr)
@@ -90,8 +82,8 @@ def main() -> None:
             "continue": True,
             "hookSpecificOutput": {
                 "hookEventName": "UserPromptSubmit",
-                "error": f"JSON parse error: {e}"
-            }
+                "error": f"JSON parse error: {e}",
+            },
         }
         print(json.dumps(error_response))
         print(f"UserPromptSubmit JSON parse error: {e}", file=sys.stderr)
@@ -103,17 +95,16 @@ def main() -> None:
             "continue": True,
             "hookSpecificOutput": {
                 "hookEventName": "UserPromptSubmit",
-                "error": f"UserPromptSubmit error: {e}"
-            }
+                "error": f"UserPromptSubmit error: {e}",
+            },
         }
         print(json.dumps(error_response))
         print(f"UserPromptSubmit unexpected error: {e}", file=sys.stderr)
         sys.exit(1)
 
     finally:
-        # Always cancel timeout
-        if cancel_timeout:
-            cancel_timeout()
+        # Always cancel alarm
+        timeout.cancel()
 
 
 if __name__ == "__main__":
